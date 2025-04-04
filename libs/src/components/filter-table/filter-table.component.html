@@ -1,0 +1,26 @@
+<mat-card>
+  <mat-card-content>
+    <mat-form-field [appearance]="appearance">
+      <mat-label>{{ label }}</mat-label>
+      <input id="filterId" #filter
+             (keyup)="filterFn(value)"
+             matInput
+             type="text"
+             [placeholder]="inputPlaceholder"
+             [(ngModel)]="value">
+      @if (value) {
+        <button [disabled]="!filter"
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                (click)="clear()">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close"></mat-icon>
+        </button>
+      }
+    </mat-form-field>
+    <div class="switch-btn">
+      <ng-content></ng-content>
+    </div>
+  </mat-card-content>
+</mat-card>
+

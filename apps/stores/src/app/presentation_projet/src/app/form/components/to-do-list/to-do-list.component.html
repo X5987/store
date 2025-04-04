@@ -1,0 +1,76 @@
+<mat-card>
+  <mat-card-header>
+    <button mat-raised-button (click)="create()">Ajouter</button>
+  </mat-card-header>
+  <mat-card-content>
+    @if (true) {
+      <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
+        @for (column of displayedColumns; track column) {
+          <ng-container [matColumnDef]="column">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header [sortActionDescription]="'Sort by' + column">
+              {{ column }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              @if (element) {
+                @switch (column) {
+                  @case (ToDoEnumform.action) {
+                    <button mat-icon-button (click)="edit(element)">
+                      <mat-icon
+                        aria-label="edit"
+                        title="edit"
+                        id="edit">edit
+                      </mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="showLine(element)">
+                      <mat-icon
+                        aria-label="visibility"
+                        title="visibility"
+                        id="visibility">visibility
+                      </mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="removeLine(element)">
+                      <mat-icon class="table-size-icon"
+                                aria-label="delete"
+                                title="delete"
+                                id="delete">delete
+                      </mat-icon>
+                    </button>
+                  }
+                  @case (ToDoEnumform.date) {
+                    {{ element[column] | date: formatDate }}
+                  }
+                  @case (ToDoEnumform.status) {
+                    <button mat-icon-button (click)="deactiveTodo(element)">
+                      <mat-icon>
+                        @if (element[column]) {
+                          check_box
+                        } @else {
+                          check_box_outline_blank
+                        }</mat-icon>
+                    </button>
+                  }
+                  @case (ToDoEnumform.archiveMessage) {
+                    @if (element[column]) {
+                      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="archive"></mat-icon>
+                    }
+                  }
+                  @case (ToDoEnumform.message) {
+                    {{ element[column] }}
+                  }
+                  @default {
+                    {{ element[column] }}
+                  }
+                }
+              }
+
+            </td>
+          </ng-container>
+        }
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    }
+    <mat-paginator [pageSizeOptions]="pageSize" aria-label="Select page of users"/>
+
+  </mat-card-content>
+</mat-card>

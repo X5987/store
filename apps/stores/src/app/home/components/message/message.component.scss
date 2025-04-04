@@ -1,0 +1,44 @@
+:host {
+
+  .snackbar-success {
+    background-color: #4caf50; /* Couleur de fond verte pour le succès */
+    color: white; /* Couleur du texte blanche */
+  }
+
+  .snackbar-error {
+    background-color: #f44336; /* Couleur de fond rouge pour l'erreur */
+    color: white; /* Couleur du texte blanche */
+  }
+
+  .snackbar-warning {
+    background-color: #ff9800; /* Couleur de fond orange pour l'avertissement */
+    color: white; /* Couleur du texte blanche */
+  }
+
+  mat-card-footer {
+
+    .btn-alert {
+      color: #ff495f;
+    }
+
+    .btn-modal {
+      color: #0015ff;
+    }
+
+    .btn-notif {
+      color: #00b2ff;
+    }
+
+    .btn-succes {
+      color: #83d308;
+    }
+
+    .btn-error {
+      color: #c5002e;
+    }
+
+    .btn-info {
+      color: #00218a;
+    }
+  }
+}

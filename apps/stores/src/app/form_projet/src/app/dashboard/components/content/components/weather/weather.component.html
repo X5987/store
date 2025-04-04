@@ -1,0 +1,8 @@
+@if (isLoading()) {
+  Loading...
+} @else {
+  <div class="weather">
+    {{ weatherSpecificCity().request?.query ?? "Api not working..." }}
+    {{ weatherSpecificCity().location?.country }}
+  </div>
+}

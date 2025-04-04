@@ -1,0 +1,28 @@
+:host {
+  width: 100%;
+
+  mat-card-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    > mat-form-field {
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .switch-btn {
+      padding-left: 10px;
+    }
+  }
+
+  .mat-mdc-form-field-subscript-wrapper,
+  .mat-mdc-form-field-bottom-align,
+  .ng-tns-c508571215-153 {
+    margin: 0;
+    padding: 0;
+  }
+
+}

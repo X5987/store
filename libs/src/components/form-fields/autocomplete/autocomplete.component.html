@@ -1,0 +1,26 @@
+<mat-form-field class="example-chip-list" [appearance]="appearance">
+  <mat-label>{{ label }}</mat-label>
+  <mat-chip-grid #chipGrid aria-label="Fruit selection">
+    @for (item of itemsSelected(); track $index) {
+      <mat-chip-row>
+        {{ item.libelle }}
+          <mat-icon (click)="remove($index)">cancel</mat-icon>
+      </mat-chip-row>
+    }
+  </mat-chip-grid>
+  <input
+    [placeholder]="placeholder"
+    [name]="name"
+    #autoCompleteInput
+    [(ngModel)]="currenItem"
+    [matChipInputFor]="chipGrid"
+    [matAutocomplete]="auto"
+    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+  />
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    @for (item of filteredItem(); track item) {
+      <mat-option [value]="item">{{ item.libelle }}
+      </mat-option>
+    }
+  </mat-autocomplete>
+</mat-form-field>

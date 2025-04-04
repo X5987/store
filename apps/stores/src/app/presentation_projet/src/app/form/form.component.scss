@@ -1,0 +1,16 @@
+
+.container {
+  flex-direction: column;
+  justify-content: stretch;
+  flex-grow: 1;
+  flex-shrink: 1;
+
+  .item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 10px;
+    justify-content: stretch;
+  }
+
+}

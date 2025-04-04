@@ -1,0 +1,37 @@
+<mat-form-field appearance="outline" class="input-search mat-elevation-z1">
+  <mat-label>Recherche Commune</mat-label>
+  <input #myInput matInput type="text" (input)="learn($event)">
+  @if (myInput) {
+    <button matSuffix mat-icon-button aria-label="Clear" [value]="myInput">
+      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close"></mat-icon>
+    </button>
+  }
+</mat-form-field>
+
+
+
+<!-- TODO a refaire les class-->
+@defer (when (result$ | async)) {
+  @for (commune of (result$ | async); track commune) {
+    <mat-card appearance="raised" >
+      <mat-card-header class="commune"> {{ commune.nom }} - <span>{{ commune.code }}</span>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Population de <strong>{{ commune.population }}</strong> habitants</p>
+      </mat-card-content>
+      <mat-card-footer class="bloc-commune-footer">
+        <mat-chip-set aria-label="Chihuahua traits">
+          <mat-chip>Région: {{ commune.codeRegion }}</mat-chip>
+        </mat-chip-set>
+      </mat-card-footer>
+    </mat-card>
+  }
+} @loading (after 100ms; minimum 2s) {
+  <div class="empty-data">
+    <p >loading...</p>
+  </div>
+} @error {
+  <p> Liste vide... </p>
+}
+
+

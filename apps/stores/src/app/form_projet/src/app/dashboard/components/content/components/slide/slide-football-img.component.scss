@@ -1,0 +1,44 @@
+:host {
+  display: flex;
+  height: 100%;
+
+  .weather-slide {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    overflow-x: scroll;
+
+    .weather-bloc {
+      scroll-snap-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to right bottom, #480bc1, #6919c4);
+      color: white;
+      padding: 0 20px 0 20px;
+      border-radius: 8px;
+
+      > .jour {
+        font-size: 15px;
+        font-weight: bold;
+      }
+
+      > img {
+        width: 60px;
+        height: 60px;
+      }
+
+      > .tempe {
+        font-size: 30px;
+        font-weight: lighter;
+      }
+
+      > .condition {
+        font-size: 10px;
+      }
+    }
+  }
+
+}

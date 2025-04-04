@@ -1,0 +1,12 @@
+<div id="checkbox-list">
+  <h2 class="section-title">{{label | translate}}</h2>
+  <form class="form-group">
+    <div [ngStyle]="{'display':'flex', 'flex-direction': position}">
+      <mat-checkbox *ngFor="let item of filterList$ | async; let i = index"
+                    [tabIndex]="tabIndex"
+                    (change)="toggleSelection(item)"
+                    [checked]="item[checkedPropertyName]">{{!!item[code] ? item[code] : '(' + item[backupCode] + ')'}}
+      </mat-checkbox>
+    </div>
+  </form>
+</div>

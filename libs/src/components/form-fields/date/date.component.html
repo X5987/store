@@ -1,0 +1,30 @@
+<div [ngClass]="{'date-label-inside': labelPosition === 'inside' && !hiddenDatePublication, 'date-label-inside-simple': labelPosition === 'inside' && hiddenDatePublication}" class="form-field-common">
+
+  <mat-label *ngIf="labelPosition === 'above'"> {{label}} </mat-label>
+  <mat-form-field [appearance]="appearance"
+                  [floatLabel]="'never'"
+                  bacErrorTooltip
+                  [control]="control"
+                  [ngClass]="{'cursorPointer': !readonly}"
+                  (click)="picker.open()">
+    <mat-label *ngIf="labelPosition === 'inside'"> {{label}} </mat-label>
+    <input tabindex="-1" matInput autocomplete="off"
+           [min]="min"
+           [max]="max"
+           [readonly]="readonly"
+           [placeholder]="placeholder"
+           [matDatepicker]="picker"
+           [ngClass]="{'cursorPointer': !readonly}"
+           [formControl]="control">
+<!--    <span matSuffix><mat-icon *ngIf="control.value" class="clear icon-18" svgIcon="close" (click)="clear()"></mat-icon></span>-->
+
+    <mat-datepicker [dateClass]="dateClass" #picker></mat-datepicker>
+    <mat-datepicker-toggle tabIndex="0" matSuffix [for]="picker"></mat-datepicker-toggle>
+
+    <mat-error class="message-font" *ngIf="!control.hasError('required') && control.value < minwithoutMoment">* La date doit être égal ou supérieur à {{ minwithoutMoment | date:'dd-MM-YYYY'}}</mat-error>
+    <!--<mat-hint class="message-font" *ngIf="control.dirty && control.value < minwithoutMoment">* La date doit être égal ou supérieur à {{ minwithoutMoment | date:'dd-MM-YYYY'}}</mat-hint>-->
+    <mat-error class="message-font" *ngIf="control.touched && control.hasError('required')">{{'ERROR_FIELD_REQUIRED' | translate}}</mat-error>
+    <mat-hint class="message-font" *ngIf="!control.touched && control.hasError('required')">{{'ERROR_FIELD_REQUIRED' | translate}}</mat-hint>
+
+  </mat-form-field>
+</div>

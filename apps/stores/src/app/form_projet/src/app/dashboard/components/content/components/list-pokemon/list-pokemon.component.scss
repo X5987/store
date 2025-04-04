@@ -1,0 +1,72 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  gap: 10px;
+
+  mat-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    color: white;
+    transition: 0.7s;
+    align-items: center;
+    background: linear-gradient(to right bottom, #03589d, #0094ff);
+
+    .img-pokemon {
+      width: 80px;
+      height: 80px;
+    }
+
+    mat-card-title {
+      color: #ffffff;
+      font-weight: bold;
+      font-family: "Comic Sans MS", serif;
+      font-size: medium;
+      top: -10px;
+    }
+
+    .mat-mdc-card-header {
+      display: flex;
+      padding: 2px 2px 0;
+    }
+
+    mat-card-content {
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .icon-color {
+        color: white;
+        align-items: center;
+      }
+    }
+
+    .mat-mdc-card-content > :last-child:not(.mat-mdc-card-footer) {
+      margin-bottom: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      background-color: rgba(255, 255, 255, 0.11);
+      width: 10%;
+    }
+
+  }
+
+  mat-card:hover {
+    background: linear-gradient(to right bottom, #0094ff, #03589d);
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: end;
+    position: sticky;
+    border-radius: 50px;
+    border: 0;
+    top: 0;
+    right: 2px;
+    width: 8vh;
+  }
+}

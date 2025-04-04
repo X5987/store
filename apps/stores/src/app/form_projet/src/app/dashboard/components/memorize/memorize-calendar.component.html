@@ -1,0 +1,51 @@
+<mat-card class="input-and-button">
+  <mat-form-field appearance="outline">
+    <mat-label>Date début</mat-label>
+    <form [formGroup]="startDateLearnForm">
+      <input matInput
+             readonly
+             [type]="'Date'"
+             [matDatepicker]="picker"
+             (click)="picker.open()"
+             (focus)="picker.open()"
+             [formControlName]="'firstDateLearn'">
+    </form>
+    <mat-datepicker #picker></mat-datepicker>
+    @if (startDateLearnForm.controls.firstDateLearn.hasError('required')) {
+      <mat-error>Date début est requis</mat-error>
+    }
+    <!--    <mat-datepicker-toggle [for]="picker"></mat-datepicker-toggle>-->
+  </mat-form-field>
+
+  <button [disabled]="!(statusComputeButton | async)"
+          mat-raised-button
+          (click)="dateCompute(startDateLearnForm.controls.firstDateLearn.value)">
+    Calcule
+  </button>
+</mat-card>
+
+@if (!!tabDate()) {
+  <mat-card class="list-date">
+    <mat-card-header>
+      Liste des dates pour la mémorisation
+    </mat-card-header>
+    <mat-card-content >
+      <div class="planning">
+        @for (date of tabDate(); track date) {
+          <mat-card appearance="raised">
+            <mat-card-content><p>{{ date | date: 'dd/MM/YYYY' }}</p></mat-card-content>
+          </mat-card>
+        }
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+}
+
+@if (startDateLearnForm.controls.firstDateLearn.value) {
+  <div class="calendar">
+    <mat-calendar [(selected)]="selected"/>
+  </div>
+}
+
+

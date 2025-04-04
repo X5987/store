@@ -1,0 +1,13 @@
+.chips-list {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  mat-chip {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    width: auto;
+    height: 28px;
+  }
+}

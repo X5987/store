@@ -1,0 +1,30 @@
+@if (list()) {
+  @for (pokemon of list(); track pokemon.id) {
+    <mat-card class="cart">
+      <mat-card-header>
+        <mat-card-title>{{ pokemon.name }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        @if (pokemon.id) {
+          <img class="img-pokemon" [src]="pokemon.image" [alt]="pokemon.slug">
+          <button mat-button (click)="pokemonDetail(pokemon.id)">
+            <mat-icon class="icon-color"
+                      aria-hidden="false"
+                      aria-label="Example home icon"
+                      fontIcon="description"></mat-icon>
+          </button>
+        }
+      </mat-card-content>
+    </mat-card>
+  }
+
+  <div class="pagination">
+    <mat-form-field appearance="outline">
+      <mat-select>
+        @for (nbr of listNbrPage(); track nbr) {
+          <mat-option [value]="10" (click)="callNewList(nbr)">{{ nbr }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+}

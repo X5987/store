@@ -1,0 +1,47 @@
+<form class="form-field-common"
+      [formGroup]="_formGroup">
+
+    <mat-form-field [appearance]="appearance">
+      <mat-label> {{label}} </mat-label>
+      <mat-chip-list #chipList [formArrayName]="_formArrayName">
+        <ng-container *ngIf="chipsPosition === 'inside'">
+          <mat-chip [color]="(control && control.invalid)?'warn':''"
+                    selected *ngFor="let control of formArray.controls; let i=index"
+                    [selectable]="true"
+                    bacErrorTooltip
+                    [control]="control"
+                    [removable]="removable"
+                    (removed)="remove(i)">
+            {{control.value}}
+            <mat-icon matChipRemove *ngIf="removable" svgIcon="cancel"></mat-icon>
+          </mat-chip>
+        </ng-container>
+        <input [placeholder]="placeholder"
+               matInput
+               [matChipInputFor]="chipList"
+               [matChipInputSeparatorKeyCodes]="separators "
+               [matChipInputAddOnBlur]="true"
+               (matChipInputTokenEnd)="add($event)"
+               autofill="non"
+               autocomplete="nope"
+               autocorrect="off"
+               autocapitalize="none"
+               spellcheck="false" />
+      </mat-chip-list>
+    </mat-form-field>
+
+  <div *ngIf="chipsPosition !== 'inside'" class="chips-list">
+    <mat-chip [ngStyle]="styleObject"
+              selected *ngFor="let control of formArray.controls; let i=index"
+              [selectable]="true"
+              bacErrorTooltip
+              [control]="control"
+              [removable]="removable"
+              (removed)="remove(i)">
+
+        {{control.value}}
+
+      <mat-icon [ngStyle]="iconColor" matChipRemove *ngIf="removable" svgIcon="cancel"></mat-icon>
+    </mat-chip>
+  </div>
+</form>

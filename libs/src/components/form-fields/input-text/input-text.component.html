@@ -1,0 +1,79 @@
+<mat-form-field [appearance]="appearance()">
+  <mat-label>{{ label() }}</mat-label>
+
+  <div class="items">
+    <input matInput
+           [id]="id()"
+           [type]="type()"
+           [formControl]="control"
+           [placeholder]="placeholder()">
+
+    @if (typePassword() && control.value) {
+      <button
+        matSuffix mat-icon-button
+        (click)="showPassword()">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="visibility"></mat-icon>
+      </button>
+    }
+    @if (control.valid) {
+      <button [disabled]="control.pending"
+              matSuffix mat-icon-button
+              aria-label="Clear"
+              (click)="clear()">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close"></mat-icon>
+      </button>
+    }
+  </div>
+
+  @if (control.hasError('required')) {
+    <mat-error>{{ label() }} est requis</mat-error>
+  }
+  @if (!control.hasError('required') && control.hasError('minlength')) {
+    <mat-error>Le nombre minimum est {{ control.getError('minlength')['requiredLength'] }}</mat-error>
+  }
+  @if (!control.hasError('required') && control.hasError('maxlength')) {
+    <mat-error>Le nombre maximum {{ control.getError('maxlength')['requiredLength'] }} est atteint</mat-error>
+  }
+  @if (!control.hasError('required') && control.hasError('min')) {
+    <mat-error>Le nombre minimum est {{ control.getError('min').min }}</mat-error>
+  }
+  @if (!control.hasError('required') && control.hasError('max')) {
+    <mat-error>Le nombre maximum {{ control.getError('max').max }} est atteint</mat-error>
+  }
+  @if (!control.hasError('required') && control.hasError('duplicate')) {
+    <mat-error>Cette valeur est dupliquée</mat-error>
+  }
+  @if (!control.hasError('required') && control.hasError('decimaleMax')) {
+    <mat-error>Valeur décimale maximale atteinte</mat-error>
+  }
+  @if (!control.hasError('required') && control.hasError('entier')) {
+    <mat-error>{{ 'Valeur entière requise' }}</mat-error>
+  }
+  @if (!control.hasError('required') && control.hasError('compareThreeElementNumber')) {
+    <mat-error>{{ 'Erreur de comparaison entre trois éléments' }}</mat-error>
+  }
+  @if (!control.hasError('required') && control.hasError('tooLargeToTheNumbertOfDefault')) {
+    <mat-error>{{ 'Valeur trop grande par rapport au nombre par défaut' }}</mat-error>
+  }
+  @if (!control.hasError('required') && control.hasError('smallerThanTheDefaultNumber')) {
+    <mat-error>{{ 'Valeur trop petite par rapport au nombre par défaut' }}</mat-error>
+  }
+  @if (!control.hasError('required') && control.hasError('biggerThanTheDefaultNumber')) {
+    <mat-error>{{ 'Valeur trop grande par rapport au nombre par défaut' }}</mat-error>
+  }
+  @if (!control.hasError('required') && control.hasError('email')) {
+    <mat-error>{{ 'Format d’email invalide' }}</mat-error>
+  }
+  @if (!control.hasError('required') && control.hasError('emailNotAllowed')) {
+    <mat-error>{{ 'Email non valide' }}</mat-error>
+  }
+  @if (control.pending) {
+    <mat-hint> Vérification de l'email en cours...</mat-hint>
+  }
+  @if (!control.hasError('required') && control.hasError('whitespace')) {
+    <mat-error>Le champ ne peut pas être vide ou contenir uniquement des espaces.</mat-error>
+  }
+</mat-form-field>
+
+
+

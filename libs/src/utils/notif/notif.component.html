@@ -1,0 +1,8 @@
+<div class="snack-container"
+     [ngClass]="data.classe">
+  {{ data.message }}
+  <mat-icon aria-hidden="false"
+            (click)="action()"
+            aria-label="Example home icon"
+            [fontIcon]="data.action"></mat-icon>
+</div>

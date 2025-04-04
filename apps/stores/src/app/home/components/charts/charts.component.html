@@ -1,0 +1,33 @@
+<div class="container">
+  @defer (on timer(500)) {
+    <ag-charts class="item" [options]="chartOptionsPie"></ag-charts>
+  } @placeholder {
+    <div class="item" libLoaderSimpleDirective></div>
+  }
+  @defer (on timer(900)) {
+    <ag-charts class="item" [options]="chartOptionsLine"></ag-charts>
+  } @placeholder {
+    <div class="item" libLoaderSimpleDirective></div>
+  }
+  @defer (on timer(1100)) {
+    <ag-charts class="item" [options]="chartOptionsBuble"></ag-charts>
+  } @placeholder {
+    <div class="item" libLoaderSimpleDirective></div>
+  }
+  @defer (on timer(1300)) {
+    <ag-charts class="item" [options]="chartOptionsDonnut"></ag-charts>
+  } @placeholder {
+    <div class="item" libLoaderSimpleDirective></div>
+  }
+  @defer (on timer(1500)) {
+    <ag-charts class="item" [options]="chartOptionsPie"></ag-charts>
+  } @placeholder {
+    <div class="item" libLoaderSimpleDirective></div>
+  }
+  @defer (on timer(1700)) {
+    <ag-charts class="item" [options]="chartOptionsLine"></ag-charts>
+  } @placeholder {
+    <div class="item" libLoaderSimpleDirective></div>
+  }
+</div>
+

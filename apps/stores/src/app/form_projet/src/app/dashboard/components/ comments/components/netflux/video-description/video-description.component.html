@@ -1,0 +1,37 @@
+<div class="description-trailer">
+
+  <div class="like-zone">
+    <div class="like-btn">
+      <a href="">
+        <mat-icon class="mat-icon">arrow_right</mat-icon>
+      </a>
+      <a href="">
+        <mat-icon class="mat-icon">add</mat-icon>
+      </a>
+      <a href="">
+        <mat-icon class="mat-icon">thumb_up</mat-icon>
+      </a>
+    </div>
+    <a (click)="detailScreen()">
+      <mat-icon class="mat-icon">keyboard_arrow_down</mat-icon>
+    </a>
+  </div>
+
+  <div class="video-format">
+    <div class="movie-info">
+      <span class="age-rating">{{ movie().ageRating }}</span>
+      <span class="duration">{{ movie().time }}</span>
+      <span class="quality">{{ movie().quality }}</span>
+    </div>
+  </div>
+
+  <div class="movie-type">
+    <div class="movie-tags">
+      @for (tag of movie().tags; track tag) {
+        <span>{{ tag }}</span>
+      }
+    </div>
+  </div>
+
+</div>
+

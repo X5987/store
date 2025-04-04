@@ -1,0 +1,43 @@
+<div class="container ">
+  <div class="item fadeIn">
+    @if (loading()) {
+      <div libLoaderDirective></div>
+    } @else {
+      <mat-card>
+        <mat-card-content>
+          <lib-input-text
+            [label]="'Identifiant'"
+            [placeholder]="'Entrer l\'identifiant'"
+            [formControl]="loginForm.controls['username']"
+          ></lib-input-text>
+          <lib-input-text
+            [label]="'Mot de passe'"
+            [type]="typeInput()"
+            [typePassword]="true"
+            (showText)="typePassword($event)"
+            [placeholder]="'Entrer le mot de passe'"
+            [formControl]="loginForm.controls['password']"
+          ></lib-input-text>
+        </mat-card-content>
+        @if (true) {
+          <mat-card-footer>
+            <button class="btn-cust"
+                    [disabled]="loginForm.invalid"
+                    (click)="login()"
+                    mat-flat-button
+            >Se connecter
+            </button>
+          </mat-card-footer>
+        }
+        @if (true) {
+          <div class="message-error">
+            <p>{{ message() }}</p>
+          </div>
+        }
+      </mat-card>
+    }
+  </div>
+</div>
+
+
+

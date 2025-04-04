@@ -1,0 +1,59 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 0.75em;
+  margin: 0;
+
+  .input-and-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    box-shadow: var(--main-box-shadow-design);
+    gap: 10px;
+    padding: 20px;
+
+    mat-form-field {
+      width: 80%;
+    }
+
+    button {
+      width: 20%;
+    }
+
+  }
+
+  .list-date {
+    box-shadow: var(--main-box-shadow-design);
+    display: flex;
+    flex-direction: column;
+
+    .planning {
+      padding-top: 20px;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 10px;
+      display: flex;
+    }
+  }
+
+  .calendar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    box-shadow: var(--main-box-shadow-design);
+    background-color: #f8f8f8;
+    border-radius: 0.75em;
+
+    mat-calendar {
+      width: calc(70vh - 140px);
+      height: calc(82vh - 200px);
+    }
+  }
+
+  button.orange {
+    background: orange;
+    border-radius: 100%;
+  }
+}
