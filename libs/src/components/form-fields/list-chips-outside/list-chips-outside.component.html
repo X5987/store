@@ -1,0 +1,56 @@
+<form class="form-field-common" [formGroup]="_formGroup">
+
+  <mat-form-field [appearance]="appearance">
+    <mat-label> {{label}} </mat-label>
+
+    <mat-chip-list *ngIf="chipsPosition === 'inside'" #chipList [formArrayName]="_formArrayName">
+        <mat-chip [color]="(control && control.invalid)?'warn':''"
+                  selected *ngFor="let control of formArray.controls; let i=index"
+                  [selectable]="true"
+                  bacErrorTooltip
+                  [control]="control"
+                  [removable]="removable"
+                  (removed)="remove(i)">{{control.value}}
+          <mat-icon matChipRemove *ngIf="removable" svgIcon="cancel"></mat-icon>
+        </mat-chip>
+
+      <input type="text" matInput
+             [placeholder]="placeholder"
+             [formControl]="inputControl"
+             [maxlength]="maxlength"
+             (keydown.enter)="!inputControl.hasError(typeError) ? add(inputControl) : ''"
+             (focusout)="!inputControl.hasError(typeError) ? add(inputControl) : ''">
+    </mat-chip-list>
+
+      <input type="text" matInput
+             [placeholder]="placeholder"
+             [formControl]="inputControl"
+             [maxlength]="maxlength"
+             (keydown.enter)="inputControl.hasError('email') || inputControl?.hasError('maxlength') ? null : add(inputControl)"
+             (focusout)="inputControl.hasError('email') || inputControl?.hasError('maxlength') ? '' : add(inputControl) ">
+
+
+      <mat-hint *ngIf="!inputControl.touched && !inputControl.dirty && inputControl?.hasError('required') && formArray.value.length === 0">{{'ERROR_FIELD_REQUIRED' | translate}}</mat-hint>
+      <mat-hint class="mat-hint-custom " *ngIf="inputControl.touched && !inputControl.dirty && inputControl?.hasError('required') && formArray.value.length === 0">{{'ERROR_FIELD_REQUIRED' | translate}}</mat-hint>
+      <mat-error class="errorMsg" *ngIf="inputControl.touched && inputControl.dirty && inputControl?.hasError('required') && formArray.value.length === 0">{{'ERROR_FIELD_REQUIRED' | translate}}</mat-error >
+
+      <mat-error class="errorMsg" *ngIf="inputControl.dirty && inputControl?.hasError('email') && formArray.value.length === 0">{{'ERROR_FIELD_EMAIL_FORMAT' | translate}}</mat-error >
+      <mat-error class="errorMsg" *ngIf="inputControl.dirty && inputControl?.hasError('email') && formArray.value.length !== 0">{{'ERROR_FIELD_EMAIL_FORMAT' | translate}}</mat-error >
+      <mat-error class="errorMsg" *ngIf="!inputControl?.hasError('required') && inputControl?.hasError('maxlength')">{{'ERROR_FIELD_MAX_LENGTH' | translate : inputControl.errors.maxlength }}</mat-error>
+  </mat-form-field>
+
+  <div *ngIf="chipsPosition !== 'inside'" class="chips-list">
+    <mat-chip [ngStyle]="styleObject"
+              selected *ngFor="let control of formArray.controls; let i=index"
+              [color]="(control && control.invalid)?'warn':''"
+              [selectable]="true"
+              bacErrorTooltip
+              [control]="control"
+              [removable]="removable"><span class="label">{{control.value}}</span>
+      <mat-icon [ngStyle]="iconColor" matChipRemove *ngIf="control.invalid" (click)="fixText(control.value, i, control.invalid)" svgIcon="edit"></mat-icon>
+      <mat-icon [ngStyle]="iconColor" matChipRemove *ngIf="removable && !control.invalid" (click)="remove(i)" svgIcon="cancel"></mat-icon>
+    </mat-chip>
+  </div>
+
+</form>
+

@@ -1,0 +1,138 @@
+@import 'variables';
+@import 'mixins';
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f7f7f7;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c4c4c4;
+  border-radius: 10px;
+  transition: 0.7s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #878787;
+  border-radius: 10px;
+  width: 15px;
+  transition: 0.7s;
+}
+
+.mat-standard-chip {
+  min-height: 26px;
+  border-radius: unset;
+  background-color: $color-primary;
+  color: $color-white;
+
+  &.mat-chip-with-trailing-icon {
+    padding: 0 10px;
+    margin-right: 10px;
+    @include font('system-ui', 12px, 2rem, $color-white, 600, 0.13px);
+    border-radius: 4px;
+  }
+
+  .mat-chip-remove {
+    &.mat-icon {
+      width: 20px;
+      height: 20px;
+      font-size: 12px;
+      font-weight: 900;
+      color: $color-white;
+      opacity: 1;
+    }
+  }
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+
+  li {
+    margin: 0;
+    padding: 5px 10px;
+    height: 18px;
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    font-family: system-ui;
+    font-size: 16px;
+    color: #3c3c3c;
+
+    &:hover {
+      background-color: darken($color: $color-white, $amount: 5%);
+    }
+
+    &:first-of-type {
+      padding-top: 10px;
+    }
+
+    &:last-of-type {
+      padding-bottom: 10px;
+    }
+
+    mat-icon {
+      margin-right: 10px;
+    }
+  }
+}
+
+.chips {
+  display: flex;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+
+  mat-option {
+    min-height: 26px;
+    //border-radius: unset;
+    //background-color: $color-primary !important;
+    color: $color-white !important;
+    //margin: 4px;
+    //padding: 7px 12px;
+    font-size: 14px;
+    height: 29px;
+    margin: 3px 8px 1px 0;
+    font-family: system-ui;
+    padding: 6px 8px;
+    border-radius: 4px;
+  }
+}
+
+h3 {
+  margin: 20px 0 0 20px;
+  @include font('system-ui', 14px, 2rem, #929292, 500, 0.13px);
+}
+
+.divider {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.chipOption {
+  color: #ffe400;
+  font-size: 8px}
+
+.chipPadding {
+  padding-left: 5px;
+}
+
+.erreurMsg {
+  padding-left: 42px;
+}
+
+
+.right-click-title {
+  margin: -8px 0 0 15px;
+  font-family: 'system-ui';
+  font-size: 12px;
+}

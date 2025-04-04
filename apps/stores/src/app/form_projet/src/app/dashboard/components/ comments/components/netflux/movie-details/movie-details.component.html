@@ -1,0 +1,90 @@
+<mat-dialog-actions class="zone-btn" align="end">
+  <a mat-dialog-close class="btn-close">
+    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close"></mat-icon>
+  </a>
+</mat-dialog-actions>
+<mat-dialog-content class="mat-typography">
+  <iframe
+    class="video"
+    width="100%"
+    height="80%"
+    [src]="sanitizer.bypassSecurityTrustResourceUrl(movie().trailerUrl)"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+
+  <div class="movie-details">
+    <div class="details">
+      <div class="movie-info">
+        <span class="year">{{ movie().releaseYear }}</span>
+        <span class="duration">{{ movie().time }}</span>
+        <span class="quality">{{ movie().quality }}</span>
+      </div>
+      <div class="tags">
+        <span class="age-rating">{{ movie().ageRating }}</span>
+        <span class="warning">
+          @for (tags of movie().tags; track tags) {
+            {{ tags }}
+          }</span>
+      </div>
+      <p class="description">{{ movie().description }}</p>
+    </div>
+    <div class="additional-info">
+      <p>Distribution :
+        @for (distribution of movie().actors; track distribution) {
+          <span class="actors">{{ distribution }}</span>
+        }
+      </p>
+      <p>Genres : <span class="genres">
+        @for (genres of movie().genres; track genres) {
+          {{ genres }}
+        }
+      </span></p>
+      <p>Ce film est : <span class="movie-type">{{ movie().director }}</span></p>
+    </div>
+  </div>
+
+  <div class="title-card">
+    <p class="news-movies-title">Nouveauté NetFlux</p>
+  </div>
+
+  <div class="list-similary-title">
+    @for (movie of listMovie(); track movie.id) {
+      <div class="bloc">
+        <div class="zone-img">
+          <iframe
+            class="video"
+            width="100%"
+            height="80%"
+            [src]="sanitizer.bypassSecurityTrustResourceUrl(movie.trailerUrl)"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="description-trailer">
+          <div class="video-format">
+            <div class="movie-info">
+              <span class="age-rating">{{ movie.ageRating }}</span>
+              <span class="duration">{{ movie.quality }}</span>
+              <span class="quality">{{ movie.releaseYear }}</span>
+            </div>
+          </div>
+          <div class="movie-tags">
+            <div class="tags">
+              @for (tag of movie.tags; track tag) {
+                <span class="tags">{{ tag }}</span>
+              }
+            </div>
+          </div>
+          <div class="description">
+            <p>{{ movie.description }}</p>
+          </div>
+        </div>
+
+
+      </div>
+    }
+  </div>
+</mat-dialog-content>

@@ -1,0 +1,138 @@
+<div class="form-field-common chips-autocomplete">
+  <mat-form-field [appearance]="appearance"
+                  autocapitalize="off"
+                  [class.icon-error]="control.errors && control.touched">
+
+    <mat-chip-list #chipList aria-label="Filter selection">
+
+      <mat-chip *ngFor="let chip of chipsList; let i = index"
+                [selectable]="selectable"
+                [removable]="removable"
+                (removed)="removeChip(chip)"
+                (contextmenu)="rightClick($event, chip, i)"
+                [ngStyle]="{'background-color': chipColor(chip.type)}">
+        {{chip.type}} :
+        <div class="chipPadding" *ngFor="let item of chip['values'], let tabIndex = index">  {{ item }}
+
+          <span *ngIf="chip.type !== 'infodesti' && chip.type !== 'international' && chip.type !== 'autorise'
+                && chip.type !== 'affGeolabel' && chip.type !== 'affPos' && chip.type !== 'affClient'">
+            <small *ngIf="tabIndex >= 0 && tabIndex < chip['values'].length -1 && !sansOperateur"
+                   class="chipOption">{{ chip.operator }}</small>
+          </span>
+
+        </div>
+
+        <!--        <small *ngIf="chip.operator !== ''" class="chipOption"> {{ chip.operator }} </small>-->
+        <!-- menu choice 'and' / 'or' -->
+
+        <mat-icon matChipRemove *ngIf="removable" svgIcon="clear"></mat-icon>
+
+        <div style="visibility: hidden; position:fixed"
+             [style.left.px]="contextMenuPosition.x"
+             [style.top.px]="contextMenuPosition.y"
+             [matMenuTriggerFor]="contextMenu"></div>
+        <mat-menu #contextMenu="matMenu" >
+          <ng-template matMenuContent>
+
+            <div *ngIf="currentChipList.length > 1 && currentChip['type'] !== 'familleProduit' && !sansOperateur">
+              <h3 class="right-click-title">Operateurs</h3>
+              <button mat-menu-item *ngIf="basicOrNot && currentChipOperator !== 'AND'" (click)="choiceSurChip('AND')">AND
+              </button>
+              <button mat-menu-item *ngIf="basicOrNot && currentChipOperator !== 'OR'" (click)="choiceSurChip('OR')">OR
+              </button>
+            </div>
+
+            <div *ngIf="currentChipList.length > 1">
+              <h3 class="right-click-title">Supprimer</h3>
+              <div *ngFor="let currentChipLists of currentChipList">
+                <button mat-menu-item
+                        (click)="choiceDelete(currentChipLists, currentChipList)">{{currentChipLists}}</button>
+              </div>
+            </div>
+
+            <div
+              *ngIf="currentChip['type'] === 'infodesti' || currentChip['type'] === 'international'
+              || currentChip['type'] === 'autorise' || currentChip['type'] === 'affGeolabel' || currentChip['type'] === 'affPos' || currentChip['type'] === 'affClient'">
+              <h3 class="right-click-title">Valeur</h3>
+              <button mat-menu-item *ngIf="!basicOrNot" (click)="choiceSurChip(true)">TRUE</button>
+              <button mat-menu-item *ngIf="!basicOrNot" (click)="choiceSurChip(false)">FALSE</button>
+            </div>
+
+          </ng-template>
+        </mat-menu>
+
+      </mat-chip>
+
+      <input #zoneInput [placeholder]="placeholder"
+             [formControl]="inputForm"
+             [matAutocomplete]="auto"
+             [matChipInputFor]="chipList"
+             [matChipInputSeparatorKeyCodes]="separatorKeysCodes">
+      <!--      (focus)="autocomplete.openPanel()"-->
+      <!--      (click)="autocomplete.openPanel()"-->
+
+    </mat-chip-list>
+
+
+    <mat-autocomplete #auto="matAutocomplete"
+                      (optionSelected)="selected($event)"
+                      autocomplete="off"
+                      autocorrect="off"
+                      autocapitalize="none"
+                      spellcheck="false">
+
+      <div *ngIf="!!inputForm.value && inputForm.value !== ''">
+        <div >
+          <h3 *ngIf="(listActionsReveiced$ | async)?.length" >{{'PRODUCT_CHIPS_ACTIONS' | translate}}</h3>
+          <ul>
+            <li *ngFor="let item of listActionsReveiced$ | async" (click)="action(item)">
+              <ng-container *ngTemplateOutlet="optionTemplate; context: { $implicit: item.label}"></ng-container>
+            </li>
+          </ul>
+        </div>
+
+        <div >
+          <h3 *ngIf="(listfiltersReveiced$ | async)?.length">{{'PRODUCT_CHIPS_FILTERS' | translate}}</h3>
+          <div class="chips">
+            <mat-option *ngIf="listfiltersReveiced$"></mat-option>
+            <mat-option *ngFor="let item of listfiltersReveiced$ | async" [value]="item"
+                        [ngStyle]="{'background-color': chipColor(item.entityType)}">{{item.label}}</mat-option>
+          </div>
+        </div>
+
+<!--        <div *ngIf="disabledSearchButtonValeurListZero">-->
+<!--          <h3>Valeurs</h3>-->
+<!--          <div class="chips">-->
+<!--            <mat-option *ngIf="listValeursReveiced$"></mat-option>-->
+<!--            <mat-option *ngFor="let item of listValeursReveiced$ | async" [value]="item"-->
+<!--                        [ngStyle]="{'background-color': chipColor(item.entityType)}">{{item.label}}</mat-option>-->
+<!--          </div>-->
+<!--        </div>-->
+
+        <!--        <div class="divider"></div>-->
+        <!--        <div class="divider" *ngIf="listfiltersReveiced$"></div>-->
+        <!--        <div class="divider" *ngIf="listfiltersReveiced$"></div>-->
+        <!--      <div class="historique-product">-->
+        <!--        <h3>Historique</h3>-->
+        <!--        <ul>-->
+        <!--          <li>Résultat d’historique numéro #1</li>-->
+        <!--          <li>Résultat d’historique numéro #2</li>-->
+        <!--          <li>Résultat d’historique numéro #3</li>-->
+        <!--        </ul>-->
+        <!--      </div>-->
+
+      </div>
+
+    </mat-autocomplete>
+
+
+    <button disabled matPrefix mat-icon-button aria-label="Search">
+      <mat-icon svgIcon="search"></mat-icon>
+    </button>
+
+    <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="clear()" *ngIf="!!control.value">
+      <mat-icon svgIcon="clear"></mat-icon>
+    </button>
+
+  </mat-form-field>
+</div>

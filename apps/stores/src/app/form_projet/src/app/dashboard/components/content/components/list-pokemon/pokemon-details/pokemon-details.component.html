@@ -1,0 +1,43 @@
+<mat-toolbar>
+  <button mat-button [routerLink]="'/personal/content'">Retour</button>
+</mat-toolbar>
+
+<div class="cart-wrapper" *ngIf="pokemon() as poke">
+  <div class="card">
+    <div class="top">
+      <span class="hp">HP {{ poke.stats?.HP }}</span>
+    </div>
+    <img [src]="poke.image" [alt]="poke.name" class="pokemon-img">
+    <h2>{{ poke.name }}</h2>
+
+    <div class="type-wrapper">
+      @for (type of poke.apiTypes; track type.name) {
+        <div class="type">
+          <img [src]="type.image" [alt]="poke.name" class="type-img">
+          <span>{{ type.name }}</span>
+        </div>
+      }
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <p>{{ poke.stats?.attack }}</p>
+        <span>Attack</span>
+      </div>
+      <div class="stat">
+        <p>{{ poke.stats?.defense }}</p>
+        <span>Defense</span>
+      </div>
+      <div class="stat">
+        <p>{{ poke.stats?.speed }}</p>
+        <span>Speed</span>
+      </div>
+      <div class="stat-power">
+        <p>{{ getRatioPower }}</p>
+        <span>Power</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+

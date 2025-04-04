@@ -1,0 +1,51 @@
+<div class="youtube-container">
+
+  <div class="search-bar-container">
+    <input matInput type="search" (input)="searchBar($event)">
+  </div>
+
+  <div class="title_card">
+    <p class="news-movies-title">Nouveauté NetFlux</p>
+  </div>
+
+  <div class="movie-container">
+    <a href="" class="btn-scroll-left" >
+      <mat-icon class="mat-icon">arrow_back_ios</mat-icon>
+    </a>
+
+    <div class="movie-list">
+      @for (movie of listMovies(); track movie) {
+        <mat-card appearance="outlined"
+                  (mouseenter)="showMovieTrailer(movie)" (mouseleave)="hideMovieTrailer()"
+                  class="movie-bloc"
+                  [class.expanded]="focusMovie === movie.id"
+                  [id]="movie.id">
+          @if (focusMovie === movie.id) {
+            <div class="card-expanded">
+              <iframe
+                class="video"
+                width="100%"
+                height="80%"
+                [src]="sanitizer.bypassSecurityTrustResourceUrl(movie.trailerUrl)"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+              <app-video-description [movie]="movie" (movieDetailShow)="openDialog()"></app-video-description>
+            </div>
+          }
+          @if (focusMovie !== movie.id) {
+            <span class="badge"> {{ movie.rating }}</span>
+            <img mat-card-image src="{{ movie.imageUrl }}" alt=""/>
+          }
+        </mat-card>
+      }
+    </div>
+
+    <a href="" class="btn-scroll-right" >
+      <mat-icon class="mat-icon">arrow_back_ios_new</mat-icon>
+    </a>
+  </div>
+
+</div>
+

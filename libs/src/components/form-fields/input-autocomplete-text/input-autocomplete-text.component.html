@@ -1,0 +1,31 @@
+  <mat-form-field [appearance]="appearance" [ngStyle]="customStyle">
+    <mat-label>{{label}}</mat-label>
+
+    <div *ngIf="simpleSelect">
+      <input type="text" aria-label="Number" matInput
+             [placeholder]="placeholder"
+             [formControl]="control"
+             [matAutocomplete]="autoComplete">
+      <mat-autocomplete autoActiveFirstOption #autoComplete="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option.code">
+          {{option.code && !option.libelle ? option.code : option.code + ' - ' + option.libelle}}
+        </mat-option>
+      </mat-autocomplete>
+    </div>
+
+    <div *ngIf="localiteSelect">
+      <input type="text" aria-label="Number" matInput
+             [placeholder]="placeholder"
+             [formControl]="control"
+             [matAutocomplete]="autoCompletes">
+      <mat-autocomplete autoActiveFirstOption #autoCompletes="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          <div>{{option.libelleLocalite ? option.codePostal + ' - ' + option.libelleLocalite : option.codeRegion && !option.codePostal? option.codeRegion : option.codePostal}}</div>
+        </mat-option>
+      </mat-autocomplete>
+    </div>
+
+    <mat-error class="message-font" *ngIf="control.dirty && control.hasError('required')">{{'ERROR_FIELD_REQUIRED' | translate}}</mat-error>
+    <mat-hint class="message-font" *ngIf="!control.dirty && control.hasError('required')">{{'ERROR_FIELD_REQUIRED' | translate}}</mat-hint>
+
+  </mat-form-field>

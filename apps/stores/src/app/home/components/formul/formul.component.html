@@ -1,0 +1,103 @@
+<lib-grid [grid]="tilesForms" [tileTypes]="TileTypeEnum.tileForms"></lib-grid>
+
+
+<!-- form zone -->
+<ng-template #formTemplate let-tile="tile">
+  <form id="form" [formGroup]="formGroupSource">
+    <lib-input-text [type]="'text'" matInput
+                    [label]="'Prénom'"
+                    [formControl]="formGroupSource.controls['name']"
+                    [appearance]="'outline'"
+                    [placeholder]="'Ex. Julie'"/>
+    <lib-input-text [type]="'email'" matInput
+                    [formControl]="formGroupSource.controls['email']"
+                    [label]="'Email'"
+                    [appearance]="'outline'"
+                    [placeholder]="'Ex. allowed@example.com'"/>
+    <lib-input-text [type]="'number'" matInput
+                    [label]="'Age'"
+                    [formControl]="formGroupSource.controls['age']"
+                    [appearance]="'outline'"
+                    [placeholder]="'Ex. Julie'"/>
+    <lib-single-select matInput
+                       [list$]="listCountry$"
+                       [label]="'Pays'"
+                       [formControl]="formGroupSource.controls['country']"
+                       [appearance]="'outline'"
+                       [placeholder]="'select'"/>
+    <button [disabled]="formGroupSource.invalid" mat-raised-button (click)="sentFirstForm()">Envoyer</button>
+  </form>
+</ng-template>
+<ng-template #formSecondTemplate let-tile="tile">
+  <form id="form-second" [formGroup]="formSecondGroupSource">
+
+    <lib-autocomplete
+      #autocompleteMarque
+      [label]="'Marque'"
+      [formControl]="formSecondGroupSource.controls['marques']"
+      [name]="'auto'"
+      [list]="list"
+      [appearance]="'outline'"
+      [placeholder]="'select'"/>
+
+    <button [disabled]="formSecondGroupSource.invalid" mat-raised-button (click)="sentSecondForm()">Envoyer</button>
+  </form>
+</ng-template>
+<ng-template #formThirdTemplate let-tile="tile">
+  <app-todo #appTodo id="form3"
+            [placeholder]="todoPlaceholder"
+            [label]="todoLabel"
+            [buttonName]="todoButtonName"
+            [arrayListTodo]="arrayListTodo">
+  </app-todo>
+</ng-template>
+
+
+<!-- retsult zone -->
+<ng-template #formFirstResultTemplate let-data="data">
+  <div><p><strong>Name:</strong> {{ data.name }}</p>
+    <p><strong>Age:</strong> {{ data.age }}</p>
+    <p><strong>Email:</strong> {{ data.email }}</p>
+    <p><strong>country:</strong> {{ data.country.libelle }}</p></div>
+</ng-template>
+<ng-template #formSecondResultTemplate let-data="data">
+  <mat-chip-set aria-label="Dog selection">
+    @for (marque of data.marques; track marque) {
+      <mat-chip>
+        <img
+          matChipAvatar
+          src="https://material.angular.io/assets/img/examples/shiba1.jpg"
+          alt="Photo of a Shiba Inu"
+        />
+        {{ marque.libelle }}
+      </mat-chip>
+    }</mat-chip-set>
+</ng-template>
+<ng-template #formThirdResultTemplate let-data="data">
+
+  @defer (on timer(2000)) {
+    <mat-list role="list">
+
+      @for (todo of (arrayListTodo | async); track todo; let i = $index) {
+        <mat-list-item role="listitem">
+          <button (click)="removeTodo(i)" mat-icon-button aria-label="Remove">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="delete"></mat-icon>
+          </button>
+          <button (click)="changeTodoText(todo)" mat-icon-button aria-label="Remove">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="edit"></mat-icon>
+          </button>
+          <mat-checkbox [disabled]="(loading | async)"
+                        [checked]="todo.complete"
+                        (change)="changeTodo(todo)"></mat-checkbox>
+          {{ todo.message }}
+        </mat-list-item>
+      } @empty {
+        <p>List vide ...</p>
+      }
+
+    </mat-list>
+  } @placeholder {
+    <div libLoaderSimpleDirective></div>
+  }
+
+</ng-template>

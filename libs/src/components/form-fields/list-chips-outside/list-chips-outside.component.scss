@@ -1,0 +1,38 @@
+.chips-list {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  .mat-form-field-wrapper {
+    width:50%;
+  }
+  mat-chip {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    width: auto;
+    height: 28px;
+    width: 100%;
+    .label {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+    }
+  }
+}
+
+.error-msg-chip {
+  font-size: 75%;
+  margin-top: 0.6666666667em;
+  top: calc(100% - 1.7916666667em);
+}
+.error-mail {
+  margin: -23px 0 18px 11px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.mat-hint-custom {
+  color: #FF0000FF !important;
+}

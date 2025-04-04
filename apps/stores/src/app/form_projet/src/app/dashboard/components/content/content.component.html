@@ -1,0 +1,27 @@
+<div class="parent">
+  <div class="div1 background-grid">
+    <app-slide-football-img #slideFootballImg></app-slide-football-img>
+  </div>
+  <div class="div2 background-grid">
+    <app-weather #weather></app-weather>
+  </div>
+  <div class="div3 background-grid">
+    <app-formulaire-lambda #formulaire></app-formulaire-lambda>
+  </div>
+  <div class="div4 background-grid">
+    <app-movies #movies (editMovie)="editMovie($event)"
+                (deleteMovie)="deleteMovie($event)"></app-movies>
+  </div>
+  <div class="div5 background-grid">
+  </div>
+  <div class="div6 background-grid">
+    <app-list-pokemon #listPokemon></app-list-pokemon>
+  </div>
+</div>
+
+
+
+
+
+
+

@@ -1,0 +1,102 @@
+<form [formGroup]="form" class="form-field-common">
+
+  <div class="row-custom" *ngIf="(restriction && paramsPrealable) || !restriction">
+
+    <mat-form-field [ngClass]="{'input-chips-container': !exclusion, 'input-chips-container-with-exclusion': exclusion}"
+                    [appearance]="appearance">
+      <mat-label>{{label}}</mat-label>
+
+      <input type="text" matInput
+             [placeholder]="placeholder"
+             [formControl]="inputForm"
+             [matAutocomplete]="auto"
+             #zoneInput
+             [maxlength]="maxlength"
+             [readonly]="readonly"
+             [matChipInputFor]="chipList"
+             (click)="inputEmptyAction(zoneInput.value)">
+
+      <mat-hint class="mat-hint-custom message-font"
+                *ngIf="inputForm.dirty && !(!!inputForm.value) && formArray.value.length === 0 && form.controls[formArrayName]?.hasError('required')" >{{'INPUT_AUTOCOMPLETE_CHIP_REQUIRED' | translate}}</mat-hint>
+      <mat-hint *ngIf="!inputForm.dirty && !(!!inputForm.value) && formArray.value.length === 0 && form.controls[formArrayName]?.hasError('required')">{{'INPUT_AUTOCOMPLETE_CHIP_REQUIRED' | translate}}</mat-hint>
+
+      <span matSuffix *ngIf="inputForm.value && disableChipsEtInputTextResetAfterSelect">
+        <mat-icon class="clear icon-18" svgIcon="close" (click)="clear()"></mat-icon>
+      </span>
+
+      <mat-hint *ngIf="formArrayName === 'listBrands' && form.get('listBrands') && form.get('listBrands').value.length === 0">{{'INPUT_AUTOCOMPLETE_CHIP_REQUIRED' | translate}}</mat-hint>
+      <mat-chip-list #chipList></mat-chip-list>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)" >
+        <mat-option *ngFor="let item of byDataServiceWeb | async" [value]="item">
+          <!--        <div *ngIf="restriction">{{item['codePays']}} - ( {{item['codePostal']||item['codeRegion']}} {{item['libelleLocalite']}})</div>&lt;!&ndash; pour formulaire restriction &ndash;&gt;-->
+          <div *ngIf="restriction"> {{item['codePostal'] || item['codeRegion']}} {{item['libelleLocalite']}}</div>
+          <!-- pour formulaire restriction -->
+          <div *ngIf="!restriction">{{item['code']}} - ({{item['libelle']}})</div>
+          <!-- pour formulaire marques | sad -->
+        </mat-option>
+      </mat-autocomplete>
+
+
+    </mat-form-field>
+
+    <div *ngIf="exclusion" class="vertical-line"></div>
+
+    <button *ngIf="exclusion" (click)="includeCountryForExclusion()" class="btn" color="primary" mat-button type="button">
+      {{'BUTTON_AUTOCOMPLETE_COUNTRY_EXCLU' | translate}}</button>
+
+  </div>
+
+  <mat-chip-list *ngIf="!disableChipsEtInputTextResetAfterSelect">
+  <mat-chip *ngFor="let chip of formArray.controls; let i = index"
+            [selectable]="selectable"
+            [removable]="removable"
+            (removed)="remove(i, chip)"
+            [ngStyle]="styleObject"
+            (click)="actions(chip, i)">
+
+    <!-- modele chips : restriction -->
+    <div class="chip-container">
+
+      <!--        <div *ngIf="matiereDangereuse && !restriction && !sad"><strong style="padding-right: 7px">{{chip.value.code }} </strong> ({{ chip.value.libelle}})</div>-->
+      <div *ngIf="matiereDangereuse && !restriction && !sad"><strong
+        style="padding-right: 7px">{{chip.value.code }} </strong> ({{chip.value.libelle }})
+      </div>
+
+      <div
+        *ngIf="restriction && !sad && !chip.value.codePostal && !chip.value.libelleLocalite &&  !chip.value.codeRegion">
+        <strong class="ecart-code-pays">{{chip.value.codePays}}</strong></div> <!-- Pays exclu codePays uniquement -->
+      <div *ngIf="restriction && !sad && chip.value.codePostal && !chip.value.libelleLocalite"><strong
+        class="ecart-code-pays">{{chip.value.codePays}}</strong> ({{chip.value.codePostal}})
+      </div>
+      <div
+        *ngIf="restriction && !sad && !chip.value.codePostal && !chip.value.libelleLocalite &&  chip.value.codeRegion">
+        <strong class="ecart-code-pays">{{chip.value.codePays}}</strong> ({{chip.value.codeRegion}})
+      </div>
+      <div *ngIf="restriction && !sad && chip.value.libelleLocalite"><strong
+        class="ecart-code-pays">{{chip.value.codePays}}</strong>
+        ({{chip.value.codePostal}} {{chip.value.libelleLocalite}})
+      </div>
+
+      <!-- modele chips : marques, saisie, devise, incoterms -->
+      <div *ngIf="!matiereDangereuse && !restriction && !sad">{{chip.value.code}}</div>
+
+      <!-- icon surcharge activé -->
+      <div class="mat-icon-surcharge">
+        <mat-icon *ngIf="!restriction && sad && (chip.value.surcharge && chip.value.surcharge['surchargeActive'])"
+                  matChipAvatar></mat-icon>
+      </div>
+
+      <!-- icon surcharge desactivé -->
+      <div class="mat-icon-surcharge-non-active">
+        <mat-icon *ngIf="!restriction && sad && (chip.value.surcharge && !chip.value.surcharge['surchargeActive'])"
+                  matChipAvatar></mat-icon>
+      </div>
+
+      <!-- modele chips : (sad, exp, dest) -->
+      <div *ngIf="!restriction && sad">{{chip.value.code}}</div>
+
+      <mat-icon [ngStyle]="iconColor" matChipRemove *ngIf="(chip.value.code === 'FR' && removableChipFR === false) ? !removable : removable" svgIcon="cancel"></mat-icon>
+    </div>
+  </mat-chip>
+  </mat-chip-list>
+</form>

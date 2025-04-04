@@ -1,0 +1,66 @@
+:host * {
+  transition: all 200ms ease-in-out;
+}
+
+.sidenav-header-picture {
+  box-shadow: 0.2em 0.2em 0.2em #d8dae0b1, -0.075em -0.075em 1em #ffffff;
+}
+
+.sidenav-header {
+  padding-top: 24px;
+  text-align: center;
+
+  > img {
+    border-radius: 100%;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+
+  .header-text {
+
+    > h2 {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.5rem;
+    }
+
+    > p {
+      margin: 0;
+      font-size: 0.8rem;
+    }
+  }
+
+  .hide-header-text {
+    display: none;
+    height: 0;
+  }
+}
+
+mat-nav-list {
+  padding: 5px;
+
+  .text-activ {
+    font-weight: bolder;
+    color: #2d5ab4;
+  }
+
+  .icon-color-activ {
+    color: #2d5ab4;
+  }
+
+  .text-inactiv {
+    font-weight: lighter;
+    color: rgba(0, 92, 187, 0.52);
+  }
+
+  .icon-color-inactiv {
+    color: rgba(0, 126, 255, 0.5);
+  }
+
+}
+
+
+
+
+
+

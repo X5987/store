@@ -1,0 +1,20 @@
+<div class="container">
+  <lib-input-text
+    [label]="'title'"
+    [placeholder]="'Nom du film'"
+    [formControl]="form.controls['title']">
+  </lib-input-text>
+  <lib-input-text
+    [label]="'Description'"
+    [placeholder]="'Descriptiondu film'"
+    [formControl]="form.controls['description']">
+  </lib-input-text>
+  @if (modeUpdate()) {
+    <div class="edit-button">
+      <button [disabled]="form.invalid" (click)="editToParent(form)" mat-raised-button>edit</button>
+      <button [disabled]="form.invalid" (click)="cancelEdit()" mat-raised-button>cancel</button>
+    </div>
+  } @else {
+    <button [disabled]="form.invalid" (click)="saveToParent(form)" mat-raised-button>save</button>
+  }
+</div>

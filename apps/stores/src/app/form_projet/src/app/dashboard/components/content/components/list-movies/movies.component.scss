@@ -1,0 +1,55 @@
+:host * {
+  transition: 0.3s;
+  scroll-behavior: smooth;
+}
+
+:host{
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  height: 90%;
+  margin: 10px;
+  padding: 20px;
+  gap: 10px;
+  flex-grow: 1;
+
+  mat-card {
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    border-radius: 10px;
+    color: white;
+    background: linear-gradient(to right bottom,  #0037c1, #6300cf);
+    transition: 0.7s;
+
+    > mat-card-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: left;
+    }
+
+    > mat-card-footer {
+      display: flex;
+      justify-content: right;
+    }
+  }
+
+  mat-card:hover {
+    transition: 0.7s;
+    background: linear-gradient(to left,  #0037c1, #6300cf);
+  }
+
+  mat-icon {
+    background-color: white;
+    border-radius: 50%;
+    font-size: 16px;
+    align-content: center;
+    color: #939eb1;
+  }
+
+  mat-icon:hover {
+    color: #0037c1;
+  }
+}
+

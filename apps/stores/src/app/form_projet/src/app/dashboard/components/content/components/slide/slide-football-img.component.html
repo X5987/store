@@ -1,0 +1,12 @@
+<div class="weather-slide">
+  @for (day of weatherData; track day; let i = $index) {
+    <div class="weather-bloc">
+      <span class="jour">{{ day.jour }}</span>
+      <img [src]="day.icon" alt="{{ day.condition }}">
+      <span class="tempe">{{ day.temperature }}°C</span>
+      <span class="condition">{{ day.condition }}</span>
+    </div>
+  } @empty {
+    <p>List vide ...</p>
+  }
+</div>

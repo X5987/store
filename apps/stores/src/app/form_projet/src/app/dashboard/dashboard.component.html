@@ -1,0 +1,20 @@
+<lib-header></lib-header>
+
+<!--Menu top-->
+<mat-toolbar>
+  <button mat-icon-button (click)="collapse.set(!collapse())">
+    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="menu"></mat-icon>
+  </button>
+</mat-toolbar>
+
+<!--Content-->
+<mat-sidenav-container>
+  <mat-sidenav opened mode="side" [style.width]="sidenavWidth()">
+    <app-menu-sidebar [collapsed]="collapse()"></app-menu-sidebar>
+  </mat-sidenav>
+  <mat-sidenav-content [style.margin-left]="sidenavWidth()">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+

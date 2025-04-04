@@ -1,0 +1,75 @@
+@use "table";
+@use "loader";
+@use "scrollbar";
+@use "variables" as *;
+@use '@angular/material' as mat;
+
+:host * {
+  transition: all 200ms ease-in-out;
+}
+
+html {
+  @include mat.theme((
+    color: mat.$azure-palette,
+    typography: Roboto,
+    density: 0,
+  ));
+
+  body {
+    background-color: #f6f6f6;
+     font-family: Roboto Light Sans, sans-serif;
+
+    .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+      font-family: "Arial Black", sans-serif !important;
+      font-weight: 500;
+      color: #14147b;
+    }
+
+    mat-grid-list {
+      height: 100%;
+      width: 100%;
+    }
+
+    mat-grid-tile {
+      border-radius: 0.75em;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 10px;
+
+      .item {
+        margin: 10px;
+      }
+
+      mat-card {
+        background-color: white;
+        box-shadow: $box-shadow-custom;
+      }
+
+      .btn-cust {
+        background: $button-color-blue-purple;
+        color: white;
+      }
+    }
+
+    hr {
+      border: 0;
+      border-bottom: 1px dashed #ccc;
+      background: #999;
+      height: 0.01rem;
+      width: 100%;
+    }
+  }
+
+}
+
+
+
+
+
+
+
+

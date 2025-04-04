@@ -1,0 +1,23 @@
+:host {
+
+  .container {
+    flex-direction: column;
+    width: 100%;
+
+    .item {
+      width: 100%;
+
+      .title-input {
+        width: 100%;
+      }
+
+      .message-input {
+        width: 100%;
+
+        .message-area {
+          height: 150px;
+        }
+      }
+    }
+  }
+}

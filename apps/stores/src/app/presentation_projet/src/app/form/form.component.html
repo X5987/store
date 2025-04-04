@@ -1,0 +1,66 @@
+<lib-header></lib-header>
+
+<div class="container">
+
+  <div class="item">
+    <app-to-do-list/>
+  </div>
+
+  <hr>
+
+  <div class="item">
+    <lib-filter-table
+      [appearance]="filterUser_appearance"
+      [name]="filterUser_name"
+      [placeholder]="filterUser_placeholder"
+      [label]="filterUser_label"
+      (textfilter)="filterTextUser($event)"
+    />
+    @defer (on timer(3s)) {
+      <app-user-table [listUser]="listUser()" [displayedColumns]="listUserDisplayColumn"/>
+    } @placeholder (minimum 500ms) {
+      <div>Something until the loading starts</div>
+    } @loading (after 500ms; minimum 500ms) {
+      <div>Loading...</div>
+    } @error {
+      <div>Something went wrong</div>
+    }
+  </div>
+
+  <hr>
+
+  <span #trigger>Hover me</span>
+
+
+  <div class="item">
+    <lib-filter-table
+      [appearance]="filterPeriodic_appearance"
+      [name]="filterPeriodic_name"
+      [placeholder]="filterPeriodic_placeholder"
+      [label]="filterPeriodic_label"
+      (textfilter)="filterText($event)">
+      <mat-slide-toggle
+        [(ngModel)]="checkbox"
+        #toggle
+        (click)="toggleStatus(checkbox)"
+        matSuffix/>
+    </lib-filter-table>
+
+    @defer (on hover(trigger)) {
+
+      @defer (on timer(3s)) {
+        <app-periodic-table [list]="listTable$" [displayedColumns]="listColumns"/>
+      } @placeholder (minimum 500ms) {
+        <div>Something until the loading starts</div>
+      } @loading (after 500ms; minimum 500ms) {
+        <div>Loading...</div>
+      } @error {
+        <div>Something went wrong</div>
+      }
+
+    } <!-- fin du hover -->
+
+  </div>
+
+
+</div> <!-- fin du container -->

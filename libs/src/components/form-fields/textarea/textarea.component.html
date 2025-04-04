@@ -1,0 +1,31 @@
+<mat-form-field [appearance]="appearance()" class="text-area">
+  <mat-label>{{ label() }}</mat-label>
+  <textarea matInput
+            [id]="id()"
+            [formControl]="control"
+            [placeholder]="placeholder()">
+  </textarea>
+
+  @if (control.valid) {
+    <button [disabled]="control.pending"
+            matSuffix mat-icon-button
+            aria-label="Clear"
+            (click)="clear()">
+      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close"></mat-icon>
+    </button>
+  }
+</mat-form-field>
+
+  @if (control.hasError('required')) {
+    <mat-error>{{ label() }} est requis</mat-error>
+  }
+  @if (!control.hasError('required') && control.hasError('minlength')) {
+    <mat-error>Le nombre minimum est {{ control.getError('minlength')['requiredLength'] }}</mat-error>
+  }
+  @if (!control.hasError('required') && control.hasError('maxlength')) {
+    <mat-error>Le nombre maximum {{ control.getError('maxlength')['requiredLength'] }} est atteint</mat-error>
+  }
+  @if (!control.hasError('required') && control.hasError('whitespace')) {
+    <mat-error>Le champ ne peut pas être vide ou contenir uniquement des espaces.</mat-error>
+  }
+

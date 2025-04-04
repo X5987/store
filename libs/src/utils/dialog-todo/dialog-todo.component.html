@@ -1,0 +1,42 @@
+<div class="container">
+  <h2 mat-dialog-title>{{ titleTodo() }}</h2>
+  <mat-dialog-content class="item">
+    <form [formGroup]="formReceived">
+
+      <div class="title-input">
+        <lib-input-text
+          [type]="'text'"
+          matInput
+          [id]="ToDoEnumform.message"
+          [label]="inputLabel()"
+          [placeholder]="placeholder()"
+          [formControl]="formReceived.controls[ToDoEnumform.title]"
+          [appearance]="'outline'"
+        />
+      </div>
+
+      <div class="message-input">
+        <lib-textarea
+          [id]="ToDoEnumform.message"
+          [formControl]="formReceived.controls[ToDoEnumform.message]"
+          [label]="messageTitle()"
+          [appearance]="'outline'"
+          [placeholder]="messageTitle()"/>
+      </div>
+
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>{{ closeLabel() }}</button>
+    @if (!readonly()) {
+      <button
+        [disabled]="formReceived.invalid || isFormChanged()"
+        (click)="sendData()"
+        mat-button
+        [mat-dialog-close]="true"
+      >
+        {{ save() }}
+      </button>
+    }
+  </mat-dialog-actions>
+</div>

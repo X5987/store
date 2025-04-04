@@ -1,0 +1,16 @@
+<mat-card >
+  <mat-card-header>
+    <mat-card-title>{{ title }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>{{ fauxText }}</p>
+  </mat-card-content>
+  <mat-card-footer>
+    <button class="btn-alert" mat-button id="alert" (click)="showAlert()">ALERT</button>
+    <button class="btn-modal" mat-button id="modal" (click)="openDialog()">MODAL</button>
+    <button class="btn-notif" mat-button id="notif" (click)="showNotif()">NOTIF</button>
+    <button class="btn-succes" mat-button id="succesNotif" (click)="showSuccessNotification()">SUCCES</button>
+    <button class="btn-error" mat-button id="errorNotif" (click)="showErrorNotification()">ERROR</button>
+    <button class="btn-info" mat-button id="infoNotif" (click)="showWarningNotification()">INFO</button>
+  </mat-card-footer>
+</mat-card>
