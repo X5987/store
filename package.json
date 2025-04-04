@@ -2,7 +2,10 @@
   "name": "@stores/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "ng serve stores": "npx nx serve stores",
+    "test": "npx test"
+  },
   "private": true,
   "dependencies": {
     "@angular/common": "~19.2.0",
