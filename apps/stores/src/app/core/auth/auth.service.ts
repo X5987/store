@@ -5,7 +5,6 @@ import { delay, Observable, of } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor() {}
 
   readonly #isLoggedIn = signal(false);
   readonly isLoggedIn = this.#isLoggedIn.asReadonly();

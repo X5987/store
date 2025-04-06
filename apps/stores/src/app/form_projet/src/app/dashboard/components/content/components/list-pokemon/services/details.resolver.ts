@@ -12,7 +12,7 @@ export class DetailsDataResolver implements Resolve<any>, OnDestroy {
   private destroy$ = new Subject<void>();
 
   resolve(route: ActivatedRouteSnapshot) {
-    return this.service.getPokemonDetails(route.params['id']).value();
+    return this.service.getPokemonDetails(route.params['id']);
   }
 
   ngOnDestroy() {

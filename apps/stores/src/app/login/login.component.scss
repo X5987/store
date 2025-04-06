@@ -18,12 +18,21 @@
         display: flex;
         flex-shrink: 0;
         width: 25vh;
+        height: 25vh;
+
+        mat-card-content {
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
+        }
+
         /* background-color: $box-white-color; */
         > mat-card-footer {
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          padding-top: 2vh;
         }
 
         .message-error {
@@ -36,6 +45,7 @@
           margin-top: 5px;
         }
       }
+
     }
   }
 
@@ -45,10 +55,16 @@
         width: 50%;
         height: 50%;
         > mat-card {
-          width: 100%;
-          height: 100%;
           justify-content: center;
           align-items: center;
+          width: 30vh;
+          height: 30vh;
+
+          mat-card-content {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+          }
         }
       }
     }
@@ -60,10 +76,10 @@
         width: 100%;
         height: 100%;
         > mat-card {
-          width: 100%;
-          height: 100%;
           justify-content: center;
           align-items: center;
+          width: 25vh;
+          height: 30vh;
         }
       }
     }

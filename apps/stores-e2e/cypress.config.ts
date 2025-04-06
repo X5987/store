@@ -12,6 +12,8 @@ export default defineConfig({
       ciWebServerCommand: 'npx nx run stores:serve-static',
       ciBaseUrl: 'http://localhost:4200',
     }),
+    supportFile: 'src/support/e2e.ts',
+    specPattern: 'src/e2e/**/*.cy.{js,jsx,ts,tsx}',
     baseUrl: 'http://localhost:4200',
   },
 });

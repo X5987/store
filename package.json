@@ -4,10 +4,13 @@
   "license": "MIT",
   "scripts": {
     "ng serve stores": "npx nx serve stores",
-    "test": "npx test"
+    "test": "nx test store --silent",
+    "test:watch": "nx test stores --watch --silent",
+    "test:all": "nx run-many --target=test --all && nx run-many --target=e2e --all"
   },
   "private": true,
   "dependencies": {
+    "@angular/animations": "^19.2.5",
     "@angular/common": "~19.2.0",
     "@angular/compiler": "~19.2.0",
     "@angular/core": "~19.2.0",
@@ -24,6 +27,7 @@
     "ngx-chartjs": "0.0.1",
     "ngx-skeleton-loader": "^10.0.0",
     "ngx-toastr": "19.0.0",
+    "punycode": "^2.3.1",
     "rxjs": "~7.8.0",
     "zone.js": "~0.15.0"
   },
