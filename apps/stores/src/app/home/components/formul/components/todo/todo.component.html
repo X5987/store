@@ -1,13 +1,21 @@
 <mat-form-field [appearance]="'outline'" id="form-third">
   <mat-label>{{ label() }}</mat-label>
-  <input id="inputMessage" [type]="'text'" [(ngModel)]="todoCurrent.value.message" matInput
-         [placeholder]="placeholder()" #value>
+  <input id="inputMessage"
+         [type]="'text'"
+         [(ngModel)]="todoCurrent().message"
+         matInput
+         [placeholder]="placeholder()"
+         #value>
 </mat-form-field>
+
+
 <ng-container id="zone-button">
   @if (modeEdition()) {
-    <button [disabled]="!value.value" id="edit" mat-button (click)="edit$.next(value.value)">Modifier</button>
+    <button [disabled]="!value.value" id="edit" mat-button (click)="edit(value.value)">Modifier
+    </button>
     <button id="cancel" mat-button (click)="removeInputText()">Cancel</button>
   } @else {
-    <button [disabled]="!value.value" id="save" mat-button (click)="add$.next(value.value)">Save</button>
+    <button [disabled]="!value.value" id="save" mat-button (click)="add(value.value)">Save
+    </button>
   }
 </ng-container>

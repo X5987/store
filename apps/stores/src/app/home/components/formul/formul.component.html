@@ -1,10 +1,10 @@
 <lib-grid [grid]="tilesForms" [tileTypes]="TileTypeEnum.tileForms"></lib-grid>
 
-
 <!-- form zone -->
 <ng-template #formTemplate let-tile="tile">
   <form id="form" [formGroup]="formGroupSource">
     <lib-input-text [type]="'text'" matInput
+                    [id]="'prenom'"
                     [label]="'Prénom'"
                     [formControl]="formGroupSource.controls['name']"
                     [appearance]="'outline'"
@@ -12,20 +12,23 @@
     <lib-input-text [type]="'email'" matInput
                     [formControl]="formGroupSource.controls['email']"
                     [label]="'Email'"
+                    [id]="'email'"
                     [appearance]="'outline'"
                     [placeholder]="'Ex. allowed@example.com'"/>
     <lib-input-text [type]="'number'" matInput
                     [label]="'Age'"
+                    [id]="'age'"
                     [formControl]="formGroupSource.controls['age']"
                     [appearance]="'outline'"
                     [placeholder]="'Ex. Julie'"/>
     <lib-single-select matInput
                        [list$]="listCountry$"
                        [label]="'Pays'"
+                       [id]="'pays'"
                        [formControl]="formGroupSource.controls['country']"
                        [appearance]="'outline'"
                        [placeholder]="'select'"/>
-    <button [disabled]="formGroupSource.invalid" mat-raised-button (click)="sentFirstForm()">Envoyer</button>
+    <button mat-button [disabled]="formGroupSource.invalid" (click)="sentFirstForm()">Envoyer</button>
   </form>
 </ng-template>
 <ng-template #formSecondTemplate let-tile="tile">
@@ -48,10 +51,9 @@
             [placeholder]="todoPlaceholder"
             [label]="todoLabel"
             [buttonName]="todoButtonName"
-            [arrayListTodo]="arrayListTodo">
+            [todoList]="arrayListTodo" >
   </app-todo>
 </ng-template>
-
 
 <!-- retsult zone -->
 <ng-template #formFirstResultTemplate let-data="data">
@@ -78,7 +80,7 @@
   @defer (on timer(2000)) {
     <mat-list role="list">
 
-      @for (todo of (arrayListTodo | async); track todo; let i = $index) {
+      @for (todo of arrayListTodo(); track todo; let i = $index) {
         <mat-list-item role="listitem">
           <button (click)="removeTodo(i)" mat-icon-button aria-label="Remove">
             <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="delete"></mat-icon>

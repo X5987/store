@@ -16,12 +16,12 @@
       </button>
     }
     @if (control.valid) {
-      <button [disabled]="control.pending"
-              matSuffix mat-icon-button
-              aria-label="Clear"
-              (click)="clear()">
-        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close"></mat-icon>
-      </button>
+      <mat-icon aria-label="Clear"
+                matSuffix
+                mat-icon-button
+                (click)="clear()"
+                [fontIcon]="icon()"
+                [hidden]="hidden()"></mat-icon>
     }
   </div>
 
@@ -68,7 +68,7 @@
     <mat-error>{{ 'Email non valide' }}</mat-error>
   }
   @if (control.pending) {
-    <mat-hint> Vérification de l'email en cours...</mat-hint>
+    <mat-hint>Vérification de l'email en cours...</mat-hint>
   }
   @if (!control.hasError('required') && control.hasError('whitespace')) {
     <mat-error>Le champ ne peut pas être vide ou contenir uniquement des espaces.</mat-error>

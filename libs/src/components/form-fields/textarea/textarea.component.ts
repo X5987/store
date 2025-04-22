@@ -6,7 +6,6 @@ import {
   MatLabel,
   MatSuffix,
 } from '@angular/material/form-field';
-import { MatIconButton } from '@angular/material/button';
 import { MatInput } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
 
@@ -16,7 +15,6 @@ import { MatIcon } from '@angular/material/icon';
   styleUrls: ['./textarea.component.scss'],
   imports: [
     MatSuffix,
-    MatIconButton,
     MatLabel,
     MatFormField,
     ReactiveFormsModule,
@@ -32,7 +30,8 @@ export class TextareaComponent {
   minlength = input<number>(0);
   maxlength = input<number>(0);
   appearance = input<'fill' | 'outline'>('outline');
-
+  icon = input<string>('close');
+  hidden = input<boolean>(false);
   constructor(@Self() private controlDir: NgControl) {
     this.controlDir.valueAccessor = this;
   }
