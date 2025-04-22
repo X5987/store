@@ -1,7 +1,6 @@
 :host {
 
   mat-list {
-    height: calc(100% - 100px);
     overflow-y: scroll;
   }
 
@@ -10,6 +9,8 @@
     flex-direction: column;
     overflow-y: scroll;
     height: calc(100% - 100px);
+    width: 28vh;
+    gap: 20px;
   }
 
   #form-second {

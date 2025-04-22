@@ -2,7 +2,6 @@ import { Component, input, OnDestroy, Self } from '@angular/core';
 import { FormControl, NgControl, ReactiveFormsModule } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconButton } from '@angular/material/button';
 import { MatOption } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
 import { AsyncPipe } from '@angular/common';
@@ -26,7 +25,6 @@ export interface ListSelect {
     MatOption,
     ReactiveFormsModule,
     AsyncPipe,
-    MatIconButton,
   ],
 })
 export class SingleSelectComponent implements OnDestroy {
@@ -35,9 +33,12 @@ export class SingleSelectComponent implements OnDestroy {
   disabled = input(false);
   label = input.required<string>();
   placeholder = input.required<string>();
+  icon = input<string>('close');
+  hidden = input<boolean>(false);
   list$ = input.required<Observable<ListSelect[]>>();
 
   protected _onDestroy = new Subject<void>();
+
   constructor(@Self() public controlDir: NgControl) {
     this.controlDir.valueAccessor = this;
   }

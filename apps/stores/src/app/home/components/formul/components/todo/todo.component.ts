@@ -1,12 +1,10 @@
 import {
   Component,
   Input,
-  OnDestroy,
-  OnInit,
   signal,
-  Signal,
+  WritableSignal,
 } from '@angular/core';
-import { BehaviorSubject, map, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
@@ -24,66 +22,46 @@ export interface Todo {
   styleUrl: './todo.component.scss',
   imports: [MatLabel, MatFormField, MatInput, MatButton, FormsModule],
 })
-export class TodoComponent implements OnInit, OnDestroy {
-  @Input({ required: true }) label: Signal<string> = signal('');
-  @Input({ required: true }) placeholder: Signal<string> = signal('');
-  @Input({ required: true }) buttonName: Signal<string> = signal('');
-  @Input({ required: true }) arrayListTodo: BehaviorSubject<Todo[]> =
-    new BehaviorSubject<Todo[]>([]);
-  modeEdition: Signal<boolean> = signal(false);
+export class TodoComponent {
+  @Input({ required: true }) label: WritableSignal<string> = signal('');
+  @Input({ required: true }) placeholder: WritableSignal<string> = signal('');
+  @Input({ required: true }) buttonName: WritableSignal<string> = signal('');
+  @Input({ required: true }) todoList: WritableSignal<Todo[]> = signal<Todo[]>(
+    []
+  );
 
-  protected add$: Subject<string> = new Subject<string>();
-  protected edit$: Subject<string> = new Subject<string>();
-
-  todoCurrent: BehaviorSubject<Todo> = new BehaviorSubject<Todo>({
+  modeEdition: WritableSignal<boolean> = signal(false);
+  todoCurrent: WritableSignal<Todo> = signal<Todo>({
     id: 0,
     message: '',
     complete: false,
   });
 
-  ngOnInit(): void {
-    this.add$
-      .pipe(
-        map((text: string) => {
-          if (text) {
-            const id: number = (this.arrayListTodo.value.length + 1) as number;
-            this.arrayListTodo.value.push(this.todoFormat(id, text));
-            this.removeInputText();
-          }
-        }),
-      )
-      .subscribe();
-
-    this.edit$
-      .pipe(
-        map((newText: string) => {
-          if (newText) {
-            const index = this.arrayListTodo.value.findIndex((value: Todo) => {
-              return value.id === this.todoCurrent.value.id;
-            });
-            this.arrayListTodo.value[index] = this.todoFormat(
-              this.todoCurrent.value.id,
-              newText,
-            );
-            this.removeInputText();
-            this.modeEdition = signal(false);
-          }
-        }),
-      )
-      .subscribe();
-  }
-
-  todoFormat(id: number = 0, message: string, complete: boolean = false): Todo {
+  todoFormat(id = 0, message = '', complete = false): Todo {
     return { id, message, complete };
   }
 
   removeInputText() {
-    this.todoCurrent.value.message = '';
-    this.modeEdition = signal(false);
+    this.todoCurrent.set({ message: '', complete: false, id: 0 });
+    this.modeEdition.set(false);
   }
 
-  ngOnDestroy() {
-    this.add$.unsubscribe();
-    this.edit$.unsubscribe();
+  edit(value: string) {
+    const index = this.todoList().findIndex((value: Todo) => {
+      return value.id === this.todoCurrent().id;
+    });
+    this.todoList()[index] = this.todoFormat(
+      this.todoCurrent().id,
+      value
+    );
+    this.removeInputText();
+    this.modeEdition.set(false);
+  }
+
+  add(value: string) {
+    this.todoList().push(
+      this.todoFormat(this.todoList().length + 1, value)
+    );
+    this.removeInputText();
   }
 }

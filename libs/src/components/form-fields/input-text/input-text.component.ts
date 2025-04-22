@@ -45,6 +45,8 @@ export class InputTextComponent {
   specialCharOmit = input<boolean>(false);
   showText = output<boolean>();
   stateShowText = signal(false);
+  icon = input<string>('close');
+  hidden = input<boolean>(false);
 
   constructor(@Self() public controlDir: NgControl) {
     this.controlDir.valueAccessor = this;

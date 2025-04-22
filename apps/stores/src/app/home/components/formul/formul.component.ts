@@ -9,7 +9,7 @@ import {
   ElementRef,
   signal,
   Renderer2,
-  OnDestroy,
+  OnDestroy, WritableSignal
 } from '@angular/core';
 import {
   AutocompleteComponent,
@@ -41,7 +41,6 @@ import { MatList, MatListItem } from '@angular/material/list';
 import { AsyncPipe } from '@angular/common';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
-import { DestroySubscribes } from '../../../../../../../libs/src/services/destroy/destroy-subscribes';
 
 @Component({
   selector: 'app-formul',
@@ -68,7 +67,7 @@ import { DestroySubscribes } from '../../../../../../../libs/src/services/destro
   styleUrls: ['./formul.component.scss'],
 })
 export class FormulComponent implements OnInit, OnDestroy {
-  tilesForms: Signal<GridStructur> = signal({
+  tilesForms: WritableSignal<GridStructur> = signal({
     grid: {
       cols: 3,
       rowHeight: 400,
@@ -157,16 +156,15 @@ export class FormulComponent implements OnInit, OnDestroy {
     UserWithoutAdress[]
   >();
 
-  protected readonly todoPlaceholder: Signal<string> =
+  protected readonly todoPlaceholder: WritableSignal<string> =
     model('Ex: faire ceci...');
-  protected readonly todoLabel: Signal<string> = model('Ajouter une todo');
-  protected readonly todoButtonName: Signal<string> = model('Ajouter');
+  protected readonly todoLabel: WritableSignal<string> = model('Ajouter une todo');
+  protected readonly todoButtonName: WritableSignal<string> = model('Ajouter');
 
-  arrayListTodo: BehaviorSubject<Todo[]> = new BehaviorSubject<Todo[]>([]);
+  arrayListTodo: WritableSignal<Todo[]> = signal<Todo[]>([]);
   loading: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   protected readonly router: ActivatedRoute = inject(ActivatedRoute);
-  protected readonly destroySubs: DestroySubscribes = inject(DestroySubscribes);
 
   ngOnInit(): void {
     if (this.formTemplate) {
@@ -179,17 +177,17 @@ export class FormulComponent implements OnInit, OnDestroy {
 
     this.serviceList
       .getListTodo()
-      .pipe(map((list: Todo[]) => this.arrayListTodo.next(list)))
+      .pipe(map((list: Todo[]) => this.arrayListTodo.set(list)))
       .subscribe();
   }
 
   sortData(sort: Sort) {
-    const data = this.arrayListTodo.value.slice();
+    const data = this.arrayListTodo().slice();
     if (!sort.active || sort.direction === '') {
       return;
     }
 
-    this.arrayListTodo.next(
+    this.arrayListTodo.set(
       data.sort((a, b) => {
         const isAsc = sort.direction === 'asc';
         switch (sort.active) {
@@ -240,8 +238,8 @@ export class FormulComponent implements OnInit, OnDestroy {
       .focus();
 
     this.appTodo.modeEdition = signal(true);
-    this.appTodo.todoCurrent.value.id = todo.id;
-    this.appTodo.todoCurrent.value.message = todo.message;
+    this.appTodo.todoCurrent().id = todo.id;
+    this.appTodo.todoCurrent().message = todo.message;
   }
 
   removeTodo(todoCurrent: number) {
@@ -256,10 +254,10 @@ export class FormulComponent implements OnInit, OnDestroy {
       panelClass: 'snackbar-success',
     };
     this.loading.next(true);
-    const updatedList = this.arrayListTodo.value.filter(
+    const updatedList = this.arrayListTodo().filter(
       (todo, index) => index !== todoCurrent,
     );
-    this.arrayListTodo.next(updatedList);
+    this.arrayListTodo.set(updatedList);
     this.notifService.openNotif(config.data, config);
     this.loading.next(false);
     this.appTodo.removeInputText();
@@ -267,6 +265,5 @@ export class FormulComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.loading.unsubscribe();
-    this.arrayListTodo.unsubscribe();
   }
 }

@@ -22,7 +22,7 @@ import { MatButton } from '@angular/material/button';
   ],
 })
 export class MessageComponent {
-  title: string = 'Test Notification';
+  title = 'Test Notification';
   readonly dialogService: DialogService = inject(DialogService);
   notifService: NotifService = inject(NotifService);
   fauxText: string =

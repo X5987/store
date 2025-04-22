@@ -7,12 +7,12 @@
   </textarea>
 
   @if (control.valid) {
-    <button [disabled]="control.pending"
-            matSuffix mat-icon-button
-            aria-label="Clear"
-            (click)="clear()">
-      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close"></mat-icon>
-    </button>
+      <mat-icon aria-label="Clear"
+                matSuffix
+                mat-icon-button
+                (click)="clear()"
+                [fontIcon]="icon()"
+                [hidden]="hidden()"></mat-icon>
   }
 </mat-form-field>
 
