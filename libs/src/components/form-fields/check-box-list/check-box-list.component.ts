@@ -1,17 +1,20 @@
 import { ChangeDetectionStrategy, Component, input, Self } from '@angular/core';
 import { FormControl, NgControl, ReactiveFormsModule } from '@angular/forms';
+import { MatCheckbox } from '@angular/material/checkbox';
 
 @Component({
   selector: 'lib-check-box-list',
-  templateUrl: './check-box.component.html',
-  styleUrls: ['./check-box.component.scss'],
-  imports: [ReactiveFormsModule],
+  templateUrl: 'check-box-list.component.html',
+  styleUrls: ['check-box-list.component.scss'],
+  imports: [ReactiveFormsModule, MatCheckbox],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CheckBoxListComponent {
-  listDeCheckbox = input.required<{ libelle: string; code: string }[] | { libelle: string; code: string }>();
+  listDeCheckbox = input.required<
+    { libelle: string; value: boolean; disabled: boolean }[]
+  >();
   preSelection = input.required<string>();
-  isDisable = input.required<boolean>();
+  disabled = input<boolean>(false);
 
   constructor(@Self() public controlDir: NgControl) {
     this.controlDir.valueAccessor = this;

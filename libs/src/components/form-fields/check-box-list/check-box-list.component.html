@@ -1,7 +1,8 @@
 <section [formControl]="control">
-    @for (item of listDeCheckbox(); track item.code) {
-      <mat-checkbox [disabled]="isDisable"
-                    [value]="item.code">{{ item.libelle }}
+    @for (item of listDeCheckbox(); track item.libelle) {
+      <mat-checkbox [disabled]="item.disabled"
+                    [checked]="item.value"
+      >{{ item.libelle }}
       </mat-checkbox>
     }
 </section>

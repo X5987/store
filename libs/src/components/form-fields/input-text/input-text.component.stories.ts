@@ -92,6 +92,7 @@ export const Password: Story = {
   }
 };
 
+
 export const InputError: Story = {
   render: renderFormTemplate,
   args: {
