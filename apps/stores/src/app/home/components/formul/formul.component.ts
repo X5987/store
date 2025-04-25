@@ -25,7 +25,7 @@ import {
   NotifService,
   SingleSelectComponent,
   TileTypeEnum,
-  UserWithoutAdress,
+  UserWithoutAdress
 } from '@stores/libs';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BehaviorSubject, map, Observable } from 'rxjs';
