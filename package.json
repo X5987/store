@@ -6,7 +6,8 @@
     "ng serve stores": "npx nx serve stores",
     "test": "nx test store --silent",
     "test:watch": "nx test stores --watch --silent",
-    "test:all": "nx run-many --target=test --all && nx run-many --target=e2e --all"
+    "test:all": "nx run-many --target=test --all && nx run-many --target=e2e --all",
+    "storybook": "nx run libs:storybook"
   },
   "private": true,
   "dependencies": {

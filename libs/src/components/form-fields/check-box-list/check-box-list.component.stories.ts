@@ -5,6 +5,7 @@ import { ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { within } from '@storybook/testing-library';
+import { MatError, MatFormFieldModule } from '@angular/material/form-field';
 
 const meta: Meta<CheckBoxListComponent> = {
   title: 'UI/CheckBoxList',
@@ -15,6 +16,8 @@ const meta: Meta<CheckBoxListComponent> = {
         ReactiveFormsModule,
         MatCheckboxModule,
         BrowserAnimationsModule,
+        MatFormFieldModule,
+
       ],
     }),
   ],
@@ -130,7 +133,6 @@ export const Disabled: Story = {
   },
 };
 
-
 export const WithError: Story = {
   args: {
     listDeCheckbox: [
@@ -141,8 +143,7 @@ export const WithError: Story = {
     disabled: false,
   },
   render: (args) => {
-    const control = new FormControl(null, Validators.required);
-    control.markAsTouched();
+    const control = new FormControl(null, [Validators.required]);
     return {
       props: { ...args, control },
       template: `
@@ -152,9 +153,7 @@ export const WithError: Story = {
           [disabled]="disabled"
           [formControl]="control"
         ></lib-check-box-list>
-         @if(${control.invalid}){
-           <mat-error> Selection required </mat-error>
-         }
+        <mat-error>Selection required</mat-error>
       `,
     };
   },

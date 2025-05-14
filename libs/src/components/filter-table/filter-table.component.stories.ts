@@ -43,7 +43,6 @@ const renderTemplate = (args: any) => {
         [name]="name"
         [placeholder]="placeholder"
         [label]="label"
-        [inputPlaceholder]="inputPlaceholder"
         [appearance]="appearance"
         [(filterValue)]="filterValue"
         (textfilter)="textfilter($event)"
@@ -60,9 +59,8 @@ export const Default: Story = {
   render: renderTemplate,
   args: {
     name: 'filter',
-    placeholder: 'Filter items',
+    placeholder: 'Ex: Carbon',
     label: 'Filter',
-    inputPlaceholder: 'Ex: Carbon',
     appearance: 'outline',
     filterValue: '',
   },
@@ -72,9 +70,8 @@ export const WithValue: Story = {
   render: renderTemplate,
   args: {
     name: 'filter',
-    placeholder: 'Filter items',
     label: 'Filter',
-    inputPlaceholder: 'Ex: Carbon',
+    placeholder: 'Ex: Carbon',
     appearance: 'outline',
     filterValue: 'Carbon',
   },
@@ -84,9 +81,8 @@ export const WithClearButton: Story = {
   render: renderTemplate,
   args: {
     name: 'filter',
-    placeholder: 'Filter items',
     label: 'Filter',
-    inputPlaceholder: 'Ex: Carbon',
+    placeholder: 'Ex: Carbon',
     appearance: 'outline',
     filterValue: 'Test Filter',
   },
@@ -103,9 +99,8 @@ export const WithFillAppearance: Story = {
   render: renderTemplate,
   args: {
     name: 'filter',
-    placeholder: 'Filter items',
     label: 'Filter',
-    inputPlaceholder: 'Ex: Carbon',
+    placeholder: 'Ex: Carbon',
     appearance: 'fill',
     filterValue: '',
   },

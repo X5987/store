@@ -32,9 +32,9 @@ export class FilterTableComponent {
   filterValue = model('');
   appearance=  input<MatFormFieldAppearance>('outline');
   name =  input.required<string>();
-  placeholder=  input.required<string>();
-  label=  input.required<string>();
-  inputPlaceholder=  input<string>('Ex: Carbon');
+  placeholder=  input<string>('Ex: Carbon');
+  label=  input<string>('Filter');
+  type=  input<string>('text');
 
   textfilter = output<string>();
 
