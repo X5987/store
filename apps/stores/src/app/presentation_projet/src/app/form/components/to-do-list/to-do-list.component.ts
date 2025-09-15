@@ -28,11 +28,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { FormService } from '../../services/form.service';
 import { TodoService } from '../../services/todo.service';
-import { TodoListStore } from './todo-list-store/todo-list-store';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { DatePipe } from '@angular/common';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatCard, MatCardContent, MatCardHeader } from '@angular/material/card';
+import { TablesStore } from '../../stores/tables-store';
 
 @Component({
   selector: 'app-to-do-list',
@@ -63,7 +63,6 @@ import { MatCard, MatCardContent, MatCardHeader } from '@angular/material/card';
   ],
 })
 export class ToDoListComponent implements AfterViewInit, OnDestroy {
-  dataSource: MatTableDataSource<ToDoList> = new MatTableDataSource<ToDoList>();
   private _liveAnnouncer = inject(LiveAnnouncer);
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -79,29 +78,25 @@ export class ToDoListComponent implements AfterViewInit, OnDestroy {
   protected pageSize: number[] = [5, 10, 25, 100];
   protected readonly ToDoEnumform = ToDoEnumform;
   protected readonly formatDate: string = 'dd-MM-YYYY';
-
   readonly service: FormService = inject(FormService);
-
-  store = inject(TodoListStore);
-
+  store = inject(TablesStore);
   private subscribe$: Subscription = new Subscription();
   private subscribeDialog$: Subscription = new Subscription();
   private unsubscribe$ = new Subject<void>();
   todoFormService: TodoService = inject(TodoService);
   readonly dialog = inject(MatDialog);
   fb: FormBuilder = inject(FormBuilder);
-
   todoForm: FormGroup<TodoForm> = this.todoFormService.initializeForm();
+  dataSource: MatTableDataSource<ToDoList> = new MatTableDataSource<ToDoList>();
 
   constructor() {
     effect(() => {
-      setTimeout(() => {
-        this.dataSource.data = [...this.store.list()];
-      }, 4000);
+      this.dataSource.data = this.store.list();
+      console.log('dataSource', this.dataSource.data);
     });
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
@@ -130,7 +125,7 @@ export class ToDoListComponent implements AfterViewInit, OnDestroy {
     this.store.delete(el);
   }
 
-  deactiveTodo(el: ToDoList) {
+  deactiveTodo(el: ToDoList): void {
     this.store.deactiv(el[ToDoEnumform.id]);
   }
 

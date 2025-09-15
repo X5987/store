@@ -1,14 +1,14 @@
 <mat-card>
   <mat-card-content>
-    <mat-form-field [appearance]="appearance">
-      <mat-label>{{ label }}</mat-label>
+    <mat-form-field [appearance]="appearance()">
+      <mat-label>{{ label() }}</mat-label>
       <input id="filterId" #filter
-             (keyup)="filterFn(value)"
+             (keyup)="filterFn(filterValue())"
              matInput
-             type="text"
-             [placeholder]="inputPlaceholder"
-             [(ngModel)]="value">
-      @if (value) {
+             type="type"
+             [placeholder]="placeholder()"
+             [(ngModel)]="filterValue">
+      @if (filterValue()) {
         <button [disabled]="!filter"
                 matSuffix
                 mat-icon-button

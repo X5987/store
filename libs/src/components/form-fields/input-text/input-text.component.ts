@@ -1,4 +1,4 @@
-import { Component, input, output, Self, signal } from '@angular/core';
+import { Component, input, Optional, output, Self, signal } from '@angular/core';
 import {
   FormControl,
   FormsModule,
@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
   selector: 'lib-input-text',
   templateUrl: './input-text.component.html',
   styleUrls: ['./input-text.component.scss'],
+  standalone:true,
   imports: [
     CommonModule,
     MatFormField,
@@ -31,12 +32,11 @@ import { CommonModule } from '@angular/common';
 export class InputTextComponent {
   appearance = input<'fill' | 'outline'>('outline');
   label = input.required<string>();
-  placeholder = input.required<string>();
+  placeholder = input<string>('');
   id = input<string>('');
   type = input<string>('');
   typePassword = input<boolean>(false);
   readonly = input<boolean>(false);
-  disabled = input<boolean>(false);
   min = input<number>(0);
   max = input<number>(0);
   minlength = input<number>(0);
@@ -79,5 +79,26 @@ export class InputTextComponent {
   showPassword() {
     this.stateShowText.set(!this.stateShowText());
     this.showText.emit(!this.stateShowText());
+  }
+
+  getErrorMessage(): string {
+    const errors = this.control.errors;
+    if (!errors) return '';
+    if (errors['required']) return `${this.label()} est requis`;
+    if (errors['minlength']) return `Le nombre minimum est ${errors['minlength'].requiredLength}`;
+    if (errors['maxlength']) return `Le nombre maximum ${errors['maxlength'].requiredLength} est atteint`;
+    if (errors['min']) return `Le nombre minimum est ${errors['min'].min}`;
+    if (errors['max']) return `Le nombre maximum ${errors['max'].max} est atteint`;
+    if (errors['duplicate']) return 'Cette valeur est dupliquée';
+    if (errors['decimaleMax']) return 'Valeur décimale maximale atteinte';
+    if (errors['entier']) return 'Valeur entière requise';
+    if (errors['compareThreeElementNumber']) return 'Erreur de comparaison entre trois éléments';
+    if (errors['tooLargeToTheNumbertOfDefault']) return 'Valeur trop grande par rapport au nombre par défaut';
+    if (errors['smallerThanTheDefaultNumber']) return 'Valeur trop petite par rapport au nombre par défaut';
+    if (errors['biggerThanTheDefaultNumber']) return 'Valeur trop grande par rapport au nombre par défaut';
+    if (errors['email']) return 'Format d’email invalide';
+    if (errors['emailNotAllowed']) return 'Email non valide';
+    if (errors['whitespace']) return 'Le champ ne peut pas être vide ou contenir uniquement des espaces';
+    return 'Erreur inconnue';
   }
 }

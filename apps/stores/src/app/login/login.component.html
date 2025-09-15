@@ -1,4 +1,14 @@
-<div class="container ">
+<!--<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">-->
+<!--  <input type="text" name="username" ngModel required>-->
+<!--  <input type="password" name="password" ngModel required>-->
+
+<!--  &lt;!&ndash; Désactive le bouton si le formulaire n'est pas valide &ndash;&gt;-->
+<!--  <button type="submit" [disabled]="!loginForm.valid">-->
+<!--    Login-->
+<!--  </button>-->
+<!--</form>-->
+
+<div class="container">
   <div class="item fadeIn">
     @if (loading()) {
       <div libLoaderDirective></div>
@@ -6,22 +16,22 @@
       <mat-card>
         <mat-card-content>
 
-            <lib-input-text
-              [label]="'Identifiant'"
-              [placeholder]="'Entrer l\'identifiant'"
-              id="username"
-              [formControl]="loginForm.controls['username']"
-            ></lib-input-text>
+          <lib-input-text
+            [label]="'Identifiant'"
+            [placeholder]="'Entrer l\'identifiant'"
+            id="username"
+            [formControl]="loginForm.controls['username']"
+          ></lib-input-text>
 
-            <lib-input-text
-              [label]="'Mot de passe'"
-              [type]="typeInput()"
-              id="password"
-              [typePassword]="true"
-              (showText)="typePassword($event)"
-              [placeholder]="'Entrer le mot de passe'"
-              [formControl]="loginForm.controls['password']"
-            ></lib-input-text>
+          <lib-input-text
+            [label]="'Mot de passe'"
+            [type]="typeInput()"
+            id="password"
+            [typePassword]="true"
+            (showText)="typePassword($event)"
+            [placeholder]="'Entrer le mot de passe'"
+            [formControl]="loginForm.controls['password']"
+          ></lib-input-text>
 
         </mat-card-content>
         <mat-card-footer>
@@ -41,6 +51,5 @@
     }
   </div>
 </div>
-
 
 

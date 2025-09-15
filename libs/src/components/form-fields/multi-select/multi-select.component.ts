@@ -7,7 +7,7 @@ import { takeUntil, tap } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 @Component({
-  selector: 'bac-multi-select',
+  selector: 'lib-multi-select',
   templateUrl: './multi-select.component.html',
   styleUrls: ['./multi-select.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
