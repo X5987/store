@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
 import {
   FilterTableComponent,
   HeaderComponent,
@@ -28,6 +28,7 @@ import { ToDoListComponent } from './components/to-do-list/to-do-list.component'
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { MatSuffix } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+import { TablesStore } from './stores/tables-store';
 
 @Component({
   selector: 'app-form',
@@ -46,14 +47,14 @@ import { FormsModule } from '@angular/forms';
 })
 export class FormComponent implements OnInit, OnDestroy {
   filterPeriodic_appearance: 'fill' | 'outline' = 'outline';
-  filterPeriodic_name: string = 'Filter';
-  filterPeriodic_placeholder: string = 'filtre ça pédale';
-  filterPeriodic_label: string = 'Filtre periodic';
+  filterPeriodic_name = 'Filter';
+  filterPeriodic_placeholder = 'filtre ça pédale';
+  filterPeriodic_label = 'Filtre periodic';
 
   filterUser_appearance: 'fill' | 'outline' = 'outline';
-  filterUser_name: string = 'Filter';
-  filterUser_placeholder: string = 'filtre ça pédale';
-  filterUser_label: string = 'Filtre user';
+  filterUser_name = 'Filter';
+  filterUser_placeholder = 'filtre ça pédale';
+  filterUser_label = 'Filtre user';
 
   protected readonly router: ActivatedRoute = inject(ActivatedRoute);
   protected readonly serviceForm: FormService = inject(FormService);
@@ -67,7 +68,7 @@ export class FormComponent implements OnInit, OnDestroy {
   protected listUser = signal([] as User[]);
   private unsubscribe$ = new Subject<void>();
 
-  protected checkbox: boolean = false;
+  protected checkbox = false;
 
   private filterTextSubject = new BehaviorSubject<string>('');
   private filterTextUserSubject = new BehaviorSubject<string>('');
@@ -78,11 +79,9 @@ export class FormComponent implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this.unsubscribe$),
         tap((data) => {
-          console.log('Executing after 3 seconds...');
           if (data) {
             this.listTable$ = data['data'].listPeriodic;
             this.listUser = data['data'].listUsers;
-
             this.listTable$ = this.filterService.filterList(
               this.serviceForm.getElementPeriodic(),
               this.filterTextSubject,
@@ -102,7 +101,7 @@ export class FormComponent implements OnInit, OnDestroy {
                 (!item[PeriodicElementEnum.active]
                   ? item.active === toggle
                   : item.active),
-              this.toggleStatusSubject,
+              this.toggleStatusSubject
             );
             this.filterService
               .filterList(
@@ -110,13 +109,13 @@ export class FormComponent implements OnInit, OnDestroy {
                 this.filterTextUserSubject,
                 (item: User, text: string) =>
                   item[UserEnum.username].includes(text.toLowerCase()) ||
-                  item[UserEnum.password].includes(text.toLowerCase()),
+                  item[UserEnum.password].includes(text.toLowerCase())
               )
               .subscribe((list) => {
                 this.listUser.set(list);
               });
           }
-        }),
+        })
       )
       .subscribe();
   }

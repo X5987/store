@@ -1,4 +1,11 @@
-import { Component, inject, output } from '@angular/core';
+import {
+  Component,
+  inject,
+  output,
+  Signal,
+  signal,
+  WritableSignal,
+} from '@angular/core';
 import { MoviesStore } from '../stores/movies.store';
 import { Movie, Movies } from '../models';
 import { Observable } from 'rxjs';
@@ -13,7 +20,6 @@ import { MatCard, MatCardContent, MatCardFooter } from '@angular/material/card';
   templateUrl: './movies.component.html',
   styleUrl: './movies.component.scss',
   imports: [
-    AsyncPipe,
     MatIconButton,
     MatIconModule,
     MatCard,
@@ -24,7 +30,7 @@ import { MatCard, MatCardContent, MatCardFooter } from '@angular/material/card';
 export class MoviesComponent {
   store = inject(MoviesStore);
 
-  listMovies: Observable<Movies> = toObservable(this.store.items);
+  listMovies = this.store.items;
   loading: Observable<boolean> = toObservable(this.store.loading);
   editMovie = output<Movie>();
   deleteMovie = output<Movie>();

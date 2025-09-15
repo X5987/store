@@ -10,7 +10,6 @@ import { MatInput, MatInputModule } from '@angular/material/input';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
-import formatters from 'chart.js/dist/core/core.ticks';
 
 @Component({
   selector: 'lib-input-text',
@@ -33,7 +32,7 @@ import formatters from 'chart.js/dist/core/core.ticks';
 export class InputTextComponent {
   appearance = input<'fill' | 'outline'>('outline');
   label = input.required<string>();
-  placeholder = input.required<string>();
+  placeholder = input<string>('');
   id = input<string>('');
   type = input<string>('');
   typePassword = input<boolean>(false);
@@ -48,7 +47,6 @@ export class InputTextComponent {
   stateShowText = signal(false);
   icon = input<string>('close');
   hidden = input<boolean>(false);
-  disabled = input<boolean>(false);
 
   constructor(@Self() public controlDir: NgControl) {
     this.controlDir.valueAccessor = this;

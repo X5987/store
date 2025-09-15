@@ -2,9 +2,10 @@
 
 <div class="container">
 
-  <div class="item">
-    <app-to-do-list/>
-  </div>
+
+    <div class="item">
+      <app-to-do-list />
+    </div>
 
   <hr>
 
@@ -17,7 +18,7 @@
       (textfilter)="filterTextUser($event)"
     />
     @defer (on timer(3s)) {
-      <app-user-table [listUser]="listUser()" [displayedColumns]="listUserDisplayColumn"/>
+      <app-user-table [listUser]="listUser()" [displayedColumns]="listUserDisplayColumn" />
     } @placeholder (minimum 500ms) {
       <div>Something until the loading starts</div>
     } @loading (after 500ms; minimum 500ms) {
@@ -31,7 +32,6 @@
 
   <span #trigger>Hover me</span>
 
-
   <div class="item">
     <lib-filter-table
       [appearance]="filterPeriodic_appearance"
@@ -43,13 +43,13 @@
         [(ngModel)]="checkbox"
         #toggle
         (click)="toggleStatus(checkbox)"
-        matSuffix/>
+        matSuffix />
     </lib-filter-table>
 
     @defer (on hover(trigger)) {
 
       @defer (on timer(3s)) {
-        <app-periodic-table [list]="listTable$" [displayedColumns]="listColumns"/>
+        <app-periodic-table [list]="listTable$" [displayedColumns]="listColumns" />
       } @placeholder (minimum 500ms) {
         <div>Something until the loading starts</div>
       } @loading (after 500ms; minimum 500ms) {
@@ -61,6 +61,5 @@
     } <!-- fin du hover -->
 
   </div>
-
 
 </div> <!-- fin du container -->

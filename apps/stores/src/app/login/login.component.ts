@@ -2,17 +2,17 @@ import {
   Component,
   computed,
   inject,
-  linkedSignal,
-  signal,
+  linkedSignal, model, Signal,
+  signal, WritableSignal
 } from '@angular/core';
 import { MatCard, MatCardContent, MatCardFooter } from '@angular/material/card';
 import { InputTextComponent, LoaderDirective } from '@stores/libs';
 import {
   FormBuilder,
   FormControl,
-  FormsModule,
+  FormsModule, NgForm,
   ReactiveFormsModule,
-  Validators,
+  Validators
 } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
 import { Router, RouterModule } from '@angular/router';
@@ -35,7 +35,6 @@ import { AuthService } from '../core/auth/auth.service';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  fb = inject(FormBuilder);
   router = inject(Router);
   authService = inject(AuthService);
 
@@ -53,7 +52,14 @@ export class LoginComponent {
     () => this.email().includes('@') && this.password().length >= 8,
   );
 
-  loginForm = this.fb.group({
+  onSubmit(form: NgForm) {
+    if (form.valid) {
+      console.log(form.value); // { username: '...', password: '...' }
+    }
+
+  }
+
+  loginForm = inject(FormBuilder).group({
     username: new FormControl('admin', [
       Validators.required,
       Validators.minLength(3),
@@ -66,8 +72,8 @@ export class LoginComponent {
   });
 
   login() {
-    const login: string = this.loginForm.controls.username.value!;
-    const pass: string = this.loginForm.controls.password.value!;
+    const login: string | null = this.loginForm.controls.username.value;
+    const pass: string | null = this.loginForm.controls.password.value;
     this.message.set('Tentative de connexion.');
     this.loading.set(true);
 
@@ -81,8 +87,9 @@ export class LoginComponent {
       }
     });
   }
-
   typePassword(showPassword: boolean) {
     this.showPassword.set(!showPassword);
   }
+
+  protected readonly HTMLInputElement = HTMLInputElement;
 }

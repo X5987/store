@@ -2,7 +2,11 @@ import { inject, Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Todo } from '../components/formul/components/todo/todo.component';
-import { AutoCompleteList, ListSelect, Product, User } from '@stores/libs';
+import {
+  AutoCompleteList,
+  ListSelect,
+  User,
+} from '@stores/libs';
 
 @Injectable({
   providedIn: 'root',

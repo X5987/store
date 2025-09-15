@@ -1,5 +1,5 @@
 
-  @for (movie of (listMovies | async); track movie) {
+  @for (movie of listMovies(); track movie) {
     <mat-card>
       <mat-card-content>
         <span>{{ movie.title }}</span>
