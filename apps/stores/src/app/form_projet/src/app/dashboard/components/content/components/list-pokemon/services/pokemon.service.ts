@@ -8,7 +8,7 @@ import { Pokemon } from '../../models';
 })
 export class PokemonService {
   private http: HttpClient = inject(HttpClient);
-  private url: string = `https://pokebuildapi.fr/api/v1/pokemon/`;
+  private url = `https://pokebuildapi.fr/api/v1/pokemon/`;
 
   getListPokemon(pageSize: number): Observable<Pokemon[]> {
     return this.http.get<Pokemon[]>(`${this.url}limit/${pageSize}`);
