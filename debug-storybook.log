@@ -1,0 +1,230 @@
+[13:18:55.129] [INFO] Storybook Upgrade - v10.0.7
+[13:18:55.209] [INFO] detect-projects-spinner-start: Detecting projects...
+[13:18:55.212] [DEBUG] Finding Storybook projects...
+[13:18:55.703] [DEBUG] Found 1 Storybook projects
+[13:18:55.712] [INFO] detect-projects-spinner: Detecting projects: 1 projects
+[13:18:55.713] [DEBUG] Getting Storybook data...
+[13:18:55.713] [DEBUG] Getting Storybook info...
+[13:18:55.718] [DEBUG] Loading main config...
+[13:18:56.060] [DEBUG] Getting stories paths...
+[13:18:56.102] [DEBUG] Getting package manager...
+[13:18:56.356] [DEBUG] Getting Storybook version...
+[13:18:56.356] [DEBUG] C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook - Validating before version... 8.6.12
+[13:18:56.356] [DEBUG] C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook - Validating upgrade compatibility...
+[13:18:56.357] [DEBUG] C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook - Fetching NPM version information...
+[13:18:56.357] [DEBUG] Getting CLI versions from NPM for storybook...
+[13:18:56.374] [DEBUG] Getting CLI versions from NPM for storybook@next...
+[13:18:57.046] [DEBUG] C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook - Evaluating blockers...
+[13:18:57.105] [DEBUG] Getting installed version for @storybook/experimental-addon-test...
+[13:18:58.844] [DEBUG] An issue occurred while trying to find dependencies metadata using npm.
+[13:18:58.844] [INFO] detect-projects-spinner-stop: 1 project detected
+[13:18:58.844] [DEBUG] Found 1 valid projects and 0 error projects
+[13:18:58.845] [INFO] Upgrading from 8.6.12 to 10.0.7
+[13:18:58.919] [INFO] upgrade-dependencies-task-start: Fetching versions to update package.json files..
+[13:18:58.920] [DEBUG] Updating dependencies in C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook...
+[13:18:58.990] [INFO] upgrade-dependencies-task: C:/workspaces/PROJECT_DASHBOARD_CV/stores/package.json
+[13:18:58.991] [DEBUG] Getting CLI versions from NPM for @storybook/test-runner...
+[13:18:59.625] [DEBUG] {
+  "upgradedDependencies": []
+}
+[13:18:59.625] [DEBUG] {
+  "upgradedDevDependencies": [
+    "@storybook/angular@10.0.7",
+    "storybook@10.0.7",
+    "@storybook/test-runner@0.24.1"
+  ]
+}
+[13:18:59.625] [DEBUG] {
+  "upgradedPeerDependencies": []
+}
+[13:18:59.626] [DEBUG] Getting CLI versions from NPM for @storybook/angular...
+[13:19:00.216] [DEBUG] Using cached version for storybook...
+[13:19:00.217] [DEBUG] Using cached version for @storybook/test-runner...
+[13:19:00.218] [INFO] upgrade-dependencies-task-success: Updated package versions in package.json files
+[13:19:00.218] [INFO] detect-automigrations-task-start: Detecting automigrations...
+[13:19:00.219] [DEBUG] Starting automigration collection across 1 projects and 18 fixes...
+[13:19:00.276] [INFO] detect-automigrations-task: Checking automigrations for
+C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook...
+[13:19:00.276] [DEBUG] Processing project: C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook
+[13:19:00.276] [DEBUG] Checking fix eslintPlugin for project C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook...
+[13:19:00.277] [DEBUG] Checking fix addon-mdx-gfm-remove for project C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook...
+[13:19:00.278] [DEBUG] Checking fix addon-storysource-code-panel for project C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook...
+[13:19:00.278] [DEBUG] Checking fix upgrade-storybook-related-dependencies for project C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook...
+[13:19:00.278] [DEBUG] Checking for incompatible storybook packages...
+[13:19:00.280] [DEBUG] Getting installed version for @nx/storybook...
+[13:19:00.295] [DEBUG] Getting installed version for @storybook/addon-essentials...
+[13:19:00.313] [DEBUG] Getting installed version for @storybook/addon-interactions...
+[13:19:00.339] [DEBUG] Getting installed version for @storybook/core-server...
+[13:19:00.372] [DEBUG] Getting installed version for @storybook/jest...
+[13:19:00.411] [DEBUG] Getting installed version for @storybook/testing-library...
+[13:19:00.457] [DEBUG] Getting installed version for @storybook/test-runner...
+[13:19:02.579] [DEBUG] An issue occurred while trying to find dependencies metadata using npm.
+[13:19:02.579] [DEBUG] Getting CLI versions from NPM for @nx/storybook...
+[13:19:02.680] [DEBUG] An issue occurred while trying to find dependencies metadata using npm.
+[13:19:02.680] [DEBUG] Getting CLI versions from NPM for @storybook/addon-essentials...
+[13:19:02.698] [DEBUG] An issue occurred while trying to find dependencies metadata using npm.
+[13:19:02.698] [DEBUG] Getting CLI versions from NPM for @storybook/addon-interactions...
+[13:19:02.811] [DEBUG] An issue occurred while trying to find dependencies metadata using npm.
+[13:19:02.811] [DEBUG] Getting CLI versions from NPM for @storybook/core-server...
+[13:19:02.835] [DEBUG] An issue occurred while trying to find dependencies metadata using npm.
+[13:19:02.835] [DEBUG] Getting CLI versions from NPM for @storybook/jest...
+[13:19:02.948] [DEBUG] An issue occurred while trying to find dependencies metadata using npm.
+[13:19:02.948] [DEBUG] Getting CLI versions from NPM for @storybook/testing-library...
+[13:19:02.982] [DEBUG] An issue occurred while trying to find dependencies metadata using npm.
+[13:19:02.982] [DEBUG] Using cached version for @storybook/test-runner...
+[13:19:03.560] [DEBUG] Checking fix initial-globals for project C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook...
+[13:19:03.574] [DEBUG] Checking fix addon-globals-api for project C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook...
+[13:19:03.575] [DEBUG] Checking fix addon-a11y-addon-test for project C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook...
+[13:19:03.575] [DEBUG] Checking fix consolidated-imports for project C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook...
+[13:19:03.576] [DEBUG] Checking fix addon-experimental-test for project C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook...
+[13:19:03.576] [DEBUG] Using cached installed version for @storybook/experimental-addon-test...
+[13:19:03.576] [DEBUG] Checking fix rnstorybook-config for project C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook...
+[13:19:03.576] [DEBUG] Checking fix migrate-addon-console for project C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook...
+[13:19:03.576] [DEBUG] Checking fix remove-addon-interactions for project C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook...
+[13:19:03.577] [DEBUG] Checking fix renderer-to-framework for project C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook...
+[13:19:03.577] [DEBUG] Checking fix remove-essential-addons for project C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook...
+[13:19:03.577] [DEBUG] Checking fix addon-a11y-parameters for project C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook...
+[13:19:03.577] [DEBUG] Checking fix remove-docs-autodocs for project C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook...
+[13:19:03.579] [DEBUG] Checking fix wrap-getAbsolutePath for project C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook...
+[13:19:03.581] [DEBUG] Checking fix fix-faux-esm-require for project C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook...
+[13:19:03.643] [INFO] detect-automigrations-task: 
+Automigrations detected:
+[13:19:03.713] [INFO] detect-automigrations-task: ✔ eslintPlugin
+[13:19:03.786] [INFO] detect-automigrations-task: ✔ consolidated-imports
+[13:19:03.860] [INFO] detect-automigrations-task: ✔ remove-addon-interactions
+[13:19:03.931] [INFO] detect-automigrations-task: ✔ remove-essential-addons
+[13:19:04.004] [INFO] detect-automigrations-task: ✔ wrap-getAbsolutePath
+[13:19:04.004] [INFO] detect-automigrations-task-success: 5 automigration(s) detected
+[13:19:44.493] [PROMPT] Select automigrations to run {"choice":["eslintPlugin","consolidated-imports","remove-addon-interactions","remove-essential-addons","wrap-getAbsolutePath"]}
+[13:19:44.494] [INFO] automigrate-C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook-task-start: Running automigrations for C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook
+[13:19:44.494] [DEBUG] Adding dependencies: eslint-plugin-storybook@10.0.7
+[13:19:44.494] [DEBUG] Getting CLI versions from NPM for eslint-plugin-storybook...
+[13:19:45.016] [DEBUG] Detected flat config at C:\workspaces\PROJECT_DASHBOARD_CV\stores\libs\eslint.config.mjs
+[13:19:45.103] [INFO] automigrate-C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook-task: ✔ eslintPlugin
+[13:19:45.213] [INFO] automigrate-C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook-task: ✔ consolidated-imports
+[13:19:45.215] [DEBUG] Uninstalling @storybook/addon-interactions
+[13:19:45.215] [DEBUG] Removing '@storybook/addon-interactions' from main.js addons field.
+[13:19:45.290] [INFO] automigrate-C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook-task: ✔ remove-addon-interactions
+[13:19:45.292] [DEBUG] Uninstalling @storybook/addon-essentials
+[13:19:45.293] [DEBUG] Removing '@storybook/addon-essentials' from main.js addons field.
+[13:19:45.295] [DEBUG] Getting Storybook info...
+[13:19:45.297] [DEBUG] Loading main config...
+[13:19:45.299] [DEBUG] Getting stories paths...
+[13:19:45.299] [DEBUG] Getting package manager...
+[13:19:45.308] [DEBUG] Getting Storybook version...
+[13:19:45.383] [INFO] automigrate-C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook-task: Verifying @storybook/addon-docs
+[13:19:45.462] [INFO] automigrate-C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook-task: Installing @storybook/addon-docs@10.0.7
+[13:19:45.462] [DEBUG] Getting CLI versions from NPM for @storybook/addon-docs...
+[13:19:46.220] [INFO] automigrate-C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook-task: Adding '@storybook/addon-docs' to the "addons" field in
+C:\workspaces\PROJECT_DASHBOARD_CV\stores\libs\.storybook\main.ts
+[13:19:46.325] [INFO] automigrate-C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook-task: ✔ remove-essential-addons
+[13:19:46.391] [INFO] automigrate-C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook-task: ✔ wrap-getAbsolutePath
+[13:19:46.392] [INFO] automigrate-C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook-task-success: Completed automigrations for C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook
+[13:19:46.392] [INFO] Installing dependencies...
+[13:19:46.392] [INFO] install-dependencies-task-start: Installing dependencies...
+[13:21:43.244] [INFO] added 495 packages, removed 228 packages, changed 340 packages, and audited 2321 packages in 2m
+
+363 packages are looking for funding
+[13:21:43.329] [INFO] install-dependencies-task: added 495 packages, removed 228 packages, changed 340 packages, and audited 2321
+packages in 2m
+
+363 packages are looking for funding
+[13:21:43.329] [INFO] run `npm fund` for details
+[13:21:43.416] [INFO] install-dependencies-task: run `npm fund` for details
+[13:21:43.532] [INFO] 48 vulnerabilities (6 low, 41 moderate, 1 high)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+[13:21:43.629] [INFO] install-dependencies-task: 48 vulnerabilities (6 low, 41 moderate, 1 high)
+
+To address issues that do not require attention, run:
+npm audit fix
+
+To address all issues (including breaking changes), run:
+npm audit fix --force
+
+Run `npm audit` for details.
+[13:21:43.630] [INFO] Dependencies installed
+[13:21:43.630] [INFO] install-dependencies-task-success: Dependencies installed
+[13:21:43.631] [WARN] Since you are in a monorepo, we advise you to deduplicate your dependencies. We can do this for you but it might take some time.
+[13:23:55.659] [PROMPT] Execute npm run dedupe? {"choice":true}
+[13:23:55.659] [INFO] Deduplicating dependencies...
+[13:23:55.659] [INFO] dedupe-dependencies-task-start: Deduplicating dependencies...
+[13:25:11.061] [INFO] added 13 packages, removed 79 packages, changed 70 packages, and audited 2255 packages in 1m
+
+342 packages are looking for funding
+  run `npm fund` for details
+[13:25:11.138] [INFO] dedupe-dependencies-task: added 13 packages, removed 79 packages, changed 70 packages, and audited 2255
+packages in 1m
+
+342 packages are looking for funding
+run `npm fund` for details
+[13:25:11.216] [INFO] 47 vulnerabilities (5 low, 41 moderate, 1 high)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues possible (including breaking changes), run:
+  npm audit fix --force
+
+Some issues need review, and may require choosing
+a different dependency.
+
+Run `npm audit` for details.
+[13:25:11.291] [INFO] dedupe-dependencies-task: 47 vulnerabilities (5 low, 41 moderate, 1 high)
+
+To address issues that do not require attention, run:
+npm audit fix
+
+To address all issues possible (including breaking changes), run:
+npm audit fix --force
+
+Some issues need review, and may require choosing
+a different dependency.
+
+Run `npm audit` for details.
+[13:25:11.291] [INFO] Dependencies deduplicated
+[13:25:11.291] [INFO] dedupe-dependencies-task-success: Dependencies deduplicated
+[13:25:11.291] [INFO] Checking the health of your project(s)..
+[13:25:14.692] [WARN] C:/workspaces/PROJECT_DASHBOARD_CV/stores/libs/.storybook: 1 issue found
+[13:25:14.770] [INFO] You are currently using Storybook 10.0.7 but you have packages which are incompatible with it:
+
+- @nx/storybook@22.0.3 which depends on >=7.0.0 <10.0.0
+ Repo: https://nx.dev
+
+Please consider updating your packages or contacting the maintainers for compatibility details.
+
+For more on Storybook 9 compatibility, see the linked GitHub issue:
+https://github.com/storybookjs/storybook/issues/30944
+[13:25:14.770] [INFO] Incompatible Packages
+[13:25:14.842] [INFO] You are currently using Storybook 10.0.7 but you have packages which are incompatible with it:
+
+- @nx/storybook@22.0.3 which depends on >=7.0.0 <10.0.0
+ Repo: https://nx.dev
+
+Please consider updating your packages or contacting the maintainers for compatibility details.
+
+For more on Storybook 9 compatibility, see the linked GitHub issue:
+https://github.com/storybookjs/storybook/issues/30944
+[13:25:14.910] [INFO] Storybook doctor is complete!
+[13:25:14.980] [INFO] You can always recheck the health of your project(s) by running:
+npx storybook doctor
+[13:25:15.044] [INFO] The upgrade is complete!
+[13:25:15.111] [INFO] Your project(s) have been upgraded successfully, but some issues were found which need your attention, please check Storybook doctor logs above.
+[13:25:15.624] [INFO] If you want to learn more about the automigrations that executed in your project(s), please check the following links:
+
+• eslintPlugin
+• consolidated-imports
+• remove-addon-interactions
+• remove-essential-addons
+• wrap-getAbsolutePath
+[13:25:15.716] [INFO] For a full list of changes, please check our migration guide: https://storybook.js.org/docs/releases/migration-guide?ref=upgrade
+[13:25:15.808] [INFO] Attention: Storybook now collects completely anonymous telemetry regarding usage. This information is used to shape Storybook's roadmap and prioritize features.
+[13:25:15.891] [INFO] You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+[13:25:15.978] [INFO] https://storybook.js.org/telemetry
+[13:25:16.066] [INFO] 

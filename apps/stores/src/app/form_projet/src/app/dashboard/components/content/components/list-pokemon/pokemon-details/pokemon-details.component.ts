@@ -1,51 +1,60 @@
-import { Component, inject, signal } from '@angular/core';
+import {
+  Component,
+  effect,
+  inject,
+  signal,
+} from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatButton } from '@angular/material/button';
-import { NgIf } from '@angular/common';
 import { PokemonService } from '../services/pokemon.service';
-import { rxResource } from '@angular/core/rxjs-interop';
-import { take, tap } from 'rxjs';
+import { NgOptimizedImage } from '@angular/common';
+import { Pokemon } from '../../models';
 
 @Component({
   selector: 'app-pokemon-details',
   templateUrl: './pokemon-details.component.html',
   styleUrl: './pokemon-details.component.scss',
-  imports: [RouterLink, MatToolbar, MatButton, NgIf],
+  imports: [RouterLink, MatToolbar, MatButton, NgOptimizedImage],
 })
 export class PokemonDetailsComponent {
   service: PokemonService = inject(PokemonService);
-  router: ActivatedRoute = inject(ActivatedRoute);
+  route: ActivatedRoute = inject(ActivatedRoute);
   currentId = signal<number>(0);
 
-  readonly pokemon = rxResource({
-    request: () => ({ id: this.currentId() }),
-    loader: () => this.service.getPokemonDetails(this.currentId()),
-  }).value;
+  // pokemon = httpResource({
+  //   params: () => this.currentId(),
+  //   loader: ({ params }: ResourceLoaderParams<number>) => {
+  //     return this.service.getPokemonDetails(params) as Observable<Pokemon>;
+  //   },
+  // });
+
+  pokemon  = signal<Pokemon>(
+    {
+      id: 0,
+      pokedexId: 0,
+      name: '',
+      image: '',
+      sprite: '',
+      slug: '',
+      apiGeneration: 0,
+      apiPreEvolution: '',
+    }
+  );
 
   constructor() {
-    this.router.params
-      .pipe(
-        take(1),
-        tap((params) => this.currentId.set(params['id'])),
-      )
-      .subscribe();
+    this.route.params.subscribe((params) => {
+      this.currentId.set(Number(params['id']));
+    });
 
-    // this.service
-    //   .getPokemonDetails(this.currentId())
-    //   .pipe(tap((poke) => this.pokemon.set(poke)))
-    //   .subscribe();
+    effect(() => {
+      this.service
+        .getPokemonDetails(this.currentId())
+        .subscribe((pokemon: Pokemon) => {
+          this.pokemon.set(pokemon);
+        });
+    });
   }
 
-  get getRatioPower(): number {
-    const stats = this.pokemon()?.stats;
-    if (!stats) return 0;
-    return (
-      stats.attack +
-      stats.speed +
-      stats.defense +
-      stats.special_attack +
-      stats.special_defense
-    );
-  }
+  protected readonly PokemonService = PokemonService;
 }

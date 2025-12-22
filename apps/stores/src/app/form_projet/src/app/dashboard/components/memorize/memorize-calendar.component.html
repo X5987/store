@@ -17,7 +17,7 @@
     <!--    <mat-datepicker-toggle [for]="picker"></mat-datepicker-toggle>-->
   </mat-form-field>
 
-  <button [disabled]="!(statusComputeButton | async)"
+  <button [disabled]="startDateLearnForm.controls.firstDateLearn.invalid"
           mat-raised-button
           (click)="dateCompute(startDateLearnForm.controls.firstDateLearn.value)">
     Calcule

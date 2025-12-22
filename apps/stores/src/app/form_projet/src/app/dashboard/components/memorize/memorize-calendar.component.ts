@@ -13,7 +13,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { map, Observable } from 'rxjs';
-import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatError, MatFormField, MatLabel, MatSuffix } from '@angular/material/form-field';
 import {
   MatCard,
   MatCardContent,
@@ -27,7 +27,7 @@ import {
   MatDatepickerModule,
 } from '@angular/material/datepicker';
 import { MatInput } from '@angular/material/input';
-import { MatButton } from '@angular/material/button';
+import { MatButton, MatIconButton } from '@angular/material/button';
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { MatNativeDateModule } from '@angular/material/core';
 
@@ -44,7 +44,6 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatInput,
     MatDatepicker,
     MatButton,
-    AsyncPipe,
     MatCardHeader,
     MatCardContent,
     DatePipe,
@@ -54,7 +53,6 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatNativeDateModule,
   ],
-  providers: [MatDatepickerModule],
 })
 export class MemorizeCalendarComponent {
   selected = model<Date | null>(null);
@@ -72,7 +70,7 @@ export class MemorizeCalendarComponent {
       map((event) => {
         console.log(event.source.value);
         return event.source.status;
-      }),
+      })
     );
 
   protected tabDate: WritableSignal<Date[] | null> = signal(null);
@@ -87,7 +85,7 @@ export class MemorizeCalendarComponent {
             ? uniqueDate.setDate(date.getDate() + intervalDayAndMonth)
             : uniqueDate.setMonth(date.getMonth() + intervalDayAndMonth);
           return new Date(uniqueDate);
-        }),
+        })
       );
     }
   }
